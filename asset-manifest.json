@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/dish-redux-form/static/css/main.81e54ddf.chunk.css",
-    "main.js": "/dish-redux-form/static/js/main.b31dac95.chunk.js",
-    "main.js.map": "/dish-redux-form/static/js/main.b31dac95.chunk.js.map",
+    "main.js": "/dish-redux-form/static/js/main.6cc7ef1c.chunk.js",
+    "main.js.map": "/dish-redux-form/static/js/main.6cc7ef1c.chunk.js.map",
     "runtime-main.js": "/dish-redux-form/static/js/runtime-main.7fc7d7f8.js",
     "runtime-main.js.map": "/dish-redux-form/static/js/runtime-main.7fc7d7f8.js.map",
     "static/js/2.7430d442.chunk.js": "/dish-redux-form/static/js/2.7430d442.chunk.js",
@@ -22,6 +22,6 @@
     "static/js/runtime-main.7fc7d7f8.js",
     "static/js/2.7430d442.chunk.js",
     "static/css/main.81e54ddf.chunk.css",
-    "static/js/main.b31dac95.chunk.js"
+    "static/js/main.6cc7ef1c.chunk.js"
   ]
 }

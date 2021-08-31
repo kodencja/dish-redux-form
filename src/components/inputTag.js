@@ -4,11 +4,7 @@ export const createInputTag =
     const { touched, error } = meta;
     return (
       <div
-        className={[
-          "input-block",
-          error && touched ? "error" : "",
-          meta.active ? "active" : "",
-        ].join(" ")}
+        className="input-block"
       >
         <label htmlFor={input.name}>{label}</label>
         {renderTag(input, custom)}

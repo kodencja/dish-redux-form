@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/dish-redux-form/static/css/main.81e54ddf.chunk.css",
+    "main.js": "/dish-redux-form/static/js/main.b31dac95.chunk.js",
+    "main.js.map": "/dish-redux-form/static/js/main.b31dac95.chunk.js.map",
+    "runtime-main.js": "/dish-redux-form/static/js/runtime-main.7fc7d7f8.js",
+    "runtime-main.js.map": "/dish-redux-form/static/js/runtime-main.7fc7d7f8.js.map",
+    "static/js/2.7430d442.chunk.js": "/dish-redux-form/static/js/2.7430d442.chunk.js",
+    "static/js/2.7430d442.chunk.js.map": "/dish-redux-form/static/js/2.7430d442.chunk.js.map",
+    "static/js/3.9c8f5ee7.chunk.js": "/dish-redux-form/static/js/3.9c8f5ee7.chunk.js",
+    "static/js/3.9c8f5ee7.chunk.js.map": "/dish-redux-form/static/js/3.9c8f5ee7.chunk.js.map",
+    "index.html": "/dish-redux-form/index.html",
+    "static/css/main.81e54ddf.chunk.css.map": "/dish-redux-form/static/css/main.81e54ddf.chunk.css.map",
+    "static/js/2.7430d442.chunk.js.LICENSE.txt": "/dish-redux-form/static/js/2.7430d442.chunk.js.LICENSE.txt",
+    "static/media/pizza.jpg": "/dish-redux-form/static/media/pizza.a8e2abcd.jpg",
+    "static/media/plaid.jpg": "/dish-redux-form/static/media/plaid.d089c43d.jpg",
+    "static/media/style.css": "/dish-redux-form/static/media/veg4.5db3e508.jpg",
+    "static/media/sandwich.jpg": "/dish-redux-form/static/media/sandwich.4c85b99e.jpg",
+    "static/media/soup.jpg": "/dish-redux-form/static/media/soup.eae9ab6c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7fc7d7f8.js",
+    "static/js/2.7430d442.chunk.js",
+    "static/css/main.81e54ddf.chunk.css",
+    "static/js/main.b31dac95.chunk.js"
+  ]
+}

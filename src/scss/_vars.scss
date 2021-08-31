@@ -1,0 +1,121 @@
+// :root {
+//   --thumb_width: 16;
+// }
+
+$font-weights: (
+  "tiny": 200,
+  "normal": 400,
+  "fatter": 600,
+  "bold": 700,
+  "black": 900,
+);
+$font-sizes: (
+  "small": 0.7rem,
+  "small-quite": 0.85rem,
+  "quite-normal": 0.9rem,
+  "normal": 1rem,
+  "bit-larger": 1.1rem,
+  "large": 1.25rem,
+  "larger": 1.4rem,
+  "big": 1.6rem,
+  "bigger": 1.8rem,
+);
+
+$distance-sizes: (
+  "zero": 0,
+  "tiny": 0.15rem,
+  "very-small": 0.25rem,
+  "small": 0.35rem,
+  "small-quite": 0.5rem,
+  "quite-normal": 0.75rem,
+  "normal": 1rem,
+  "large": 1.25rem,
+  "larger": 1.5rem,
+  "big": 1.75rem,
+  "bigger": 2rem,
+  "much-bigger": 2.5rem,
+  "very-big": 3rem,
+  "great": 4rem,
+  "huge": 5rem,
+);
+
+$gray-200: #e9ecef;
+$sec1-bgr-col: #7c7a9a;
+$dark-blue: #0f0e72;
+$gray-blue1: #3c6165;
+$gray-blue2: #4b6062;
+$dark-steel-blue: #324962;
+$dark-gray-blue: #515e7b;
+$dark-blue-grey: #374c66;
+$light-yellow: #f1f2cf;
+$main-bgr-color: #ebf18c;
+$bubble-bgr-color: #cf4b34;
+$dark: #2e2e2e;
+$dark-green: #3d5d5d;
+$mid-gray1: #5d6c7c;
+$mid-gray2: #556874;
+$smoke: #f5f5f5;
+$black: #000000;
+$error1: #c50114;
+$error2: #dc3545;
+$fine: #006400;
+$bright-blue: #206ea1;
+$label-color: #004da5;
+$title-bgr-col: #00a5ce;
+
+// $track-color: #7a3d3d;
+$track-color: #73b428;
+// $track-color: #006400;
+// $track-color: #057d9b;
+// $track-color: #2190da;
+// $track-color: #00a100;
+$thumb-color: #fff;
+
+$border-color1: #ced4da;
+$bubble-radius: 4px;
+$bubble-width-no: 32;
+$bubble-width: 32 * 1px;
+$tight-letter-spacing: 0.25px;
+$tiny-letter-spacing: 0.5px;
+
+$dishes-border-width: 5px;
+
+$thumb-radius: 5px;
+$thumb-height: 20px;
+// $thumb-width: calc(var(--thumb_width) * 1px);
+$thumb-width-no: 16;
+$thumb-width: $thumb-width-no + 0px;
+$thumb-shadow-size: 1px;
+$thumb-shadow-blur: 1px;
+$thumb-shadow-color: #111;
+$thumb-border-width-no: 1;
+$thumb-border-width: $thumb-border-width-no * 1px;
+// $thumb-border-color: white;
+$thumb-border-color: #000000;
+
+$track-width: 100%;
+$track-height: 10px;
+$track-shadow-size: 2px;
+$track-shadow-blur: 2px;
+$track-shadow-color: #222;
+$track-border-width: 1px;
+$track-border-color: black;
+
+$track-radius: 2px;
+$contrast: 5%;
+
+$flash-time: 0.15s;
+$rapid-time: 0.25s;
+$fast-time: 0.5s;
+$faster-time: 0.65s;
+$short-time: 0.75s;
+$normal-time: 1s;
+$easy-time: 1.5s;
+$quite-slow-time: 2s;
+$slow-time: 3s;
+$slower-time: 5s;
+
+$input-padd-x: 0.75rem;
+$input-padd-y: 0.375rem;
+
+$photo-height: 224px;

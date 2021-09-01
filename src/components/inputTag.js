@@ -1,13 +1,17 @@
 export const createInputTag =
   (renderTag) =>
   ({ input, label, meta, ...custom }) => {
-    const { touched, error } = meta;
+    const { touched, error, valid } = meta;
     return (
       <div
-        className="input-block"
+      className={[
+        "input-block",
+        error && touched ? "error" : "",
+        valid && touched ? "valid" : "",
+      ].join(" ")}
       >
         <label htmlFor={input.name}>{label}</label>
-        {renderTag(input, custom)}
+        {renderTag(input, meta, custom)}
         {touched && error && error !== undefined && (
           <span className="invalid-feedback">{error}</span>
         )}

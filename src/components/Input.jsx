@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { defaultOption } from "./DishForm";
 import { createInputTag } from "./inputTag";
 
-const Input = createInputTag((input, custom) => {
+const Input = createInputTag((input, meta, custom) => {
   const options = useMemo(() => {
     if (custom.dishes_opt && custom.dishes_opt !== undefined) {
       return custom.dishes_opt.map((name, ind) => {

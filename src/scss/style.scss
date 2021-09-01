@@ -113,7 +113,7 @@ body {
 button {
   color: white;
   border: 0;
-  background-color: rgb(0, 149, 0);
+  background-color: #009500;
   // background-color: #00a5ce;
   padding: 6px;
   margin: 10px;
@@ -127,10 +127,6 @@ button {
 }
 
 .buttons {
-  overflow: hidden;
-}
-
-form {
   overflow: hidden;
 }
 
@@ -190,7 +186,7 @@ form {
 .answer {
   text-align: center;
   border-radius: 10px;
-  padding: 15px;
+  padding: 20px;
   transform-origin: 50% 50%;
   transform: perspective(500px);
   transform-style: preserve-3d;
@@ -206,8 +202,30 @@ form {
   border-radius: 10px;
   width: 100%;
   height: auto;
-  border: 25px solid transparent;
-  border-radius: 15px;
+  // border: 7px solid rgba(70, 101, 58, 0.588);
+  // border: 7px solid $dark-green;
+  // border: 7px solid darken($track-color, 10%);
+  // border: 7px solid #9bc87d;
+  // border: 7px solid #699407;
+  // border: 7px solid #cf9915;
+  // border: 7px solid #0acf8a;
+  // border: 7px solid #cf6300;
+  // border: 7px solid #006882;
+  // border: 7px solid rgba(0, 104, 130, 0.753);
+  // border: 7px solid rgb(0, 130, 80);
+  border: 7px solid rgba(0, 95, 133, 0.75);
+  // border: 7px solid #4c6c79;
+  // border: 7px solid rgba(2, 149, 155, 0.753);
+  // border: 7px solid #c2c4c5;
+  // border: 7px solid #71a3af;
+  // border: 7px solid rgba(127, 199, 166, 0.787);
+  // border: 7px solid #0d6b82;
+  // border: 7px solid rgba(16, 135, 165, 0.65);
+  // border: 7px solid #3b656b;
+  // border: 7px solid lightyellow;
+  // border: 7px solid #fefef0;
+  // border: 15px solid transparent;
+  border-radius: 8px;
   // transform-style: preserve-3d;
 }
 
@@ -269,10 +287,10 @@ form {
   border-radius: 0.25rem;
 }
 
-.active {
-  // background-color: rgb(200, 189, 32);
-  background-color: peachpuff;
-}
+// .active {
+// background-color: rgb(200, 189, 32);
+//   background-color: peachpuff;
+// }
 
 // span.errors {
 //   display: inline-block;
@@ -282,9 +300,10 @@ form {
 //   color: orangered;
 // }
 
-.error {
-  // background-color: rgba(255, 160, 122, 0.418);
-}
+// .error {
+//   // background-color: rgba(255, 160, 122, 0.418);
+//   border: 1px solid $error2;
+// }
 
 .warning {
   background-color: papayawhip;
@@ -348,10 +367,6 @@ form {
   .answer {
     margin: 0.75rem auto 0.75rem auto;
     padding: 0;
-  }
-
-  .photo {
-    border: 10px solid transparent;
   }
 
   .image {

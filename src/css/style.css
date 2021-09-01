@@ -162,6 +162,23 @@ label {
   margin-right: auto;
 }
 
+.input-block {
+  width: auto;
+  position: relative;
+  margin-top: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.input-block.error .form-control {
+  border: 2px solid #dc3545;
+}
+
+.input-block.valid .form-control {
+  border: 2px solid #00a100;
+}
+
 .form-control {
   height: calc(1.5em + 0.5rem + 2px);
   padding: 0.375rem 0.75rem;
@@ -231,15 +248,6 @@ label {
 
 #slices_of_bread {
   width: 120px;
-}
-
-.input-block {
-  width: auto;
-  position: relative;
-  margin-top: 0;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
 }
 
 form {
@@ -802,10 +810,6 @@ button:disabled {
   overflow: hidden;
 }
 
-form {
-  overflow: hidden;
-}
-
 #dishes-form {
   text-align: center;
   min-width: 55%;
@@ -859,7 +863,7 @@ form {
 .answer {
   text-align: center;
   border-radius: 10px;
-  padding: 15px;
+  padding: 20px;
   -webkit-transform-origin: 50% 50%;
       -ms-transform-origin: 50% 50%;
           transform-origin: 50% 50%;
@@ -876,8 +880,8 @@ form {
   border-radius: 10px;
   width: 100%;
   height: auto;
-  border: 25px solid transparent;
-  border-radius: 15px;
+  border: 7px solid rgba(0, 95, 133, 0.75);
+  border-radius: 8px;
 }
 
 .hide-photo {
@@ -932,10 +936,6 @@ form {
   display: block;
   font-size: 0.9rem;
   border-radius: 0.25rem;
-}
-
-.active {
-  background-color: peachpuff;
 }
 
 .warning {
@@ -1004,9 +1004,6 @@ form {
   .answer {
     margin: 0.75rem auto 0.75rem auto;
     padding: 0;
-  }
-  .photo {
-    border: 10px solid transparent;
   }
   .image {
     width: 60%;

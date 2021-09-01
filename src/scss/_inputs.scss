@@ -186,6 +186,28 @@ label {
   margin-right: auto;
 }
 
+.input-block {
+  width: auto;
+  position: relative;
+  @include paddMrg("margin", 0, 10px, 10px, 10px);
+  // transition: transform $rapid-time ease-out;
+  // .error {
+  // background-color: rgba(255, 160, 122, 0.418);
+  //   border: 1px solid $error2;
+  // }
+
+  &.error {
+    .form-control {
+      border: 2px solid $error2;
+    }
+  }
+  &.valid {
+    .form-control {
+      border: 2px solid $border-color;
+    }
+  }
+}
+
 .form-control {
   height: calc(1.5em + 0.5rem + 2px);
   // padding: $input-padd-y $input-padd-x;
@@ -261,12 +283,11 @@ label {
   width: 120px;
 }
 
-.input-block {
-  width: auto;
-  position: relative;
-  @include paddMrg("margin", 0, 10px, 10px, 10px);
-  // transition: transform $rapid-time ease-out;
-}
+// .input-block.error {
+//   input {
+//     border: 1px solid $error2;
+//   }
+// }
 
 form {
   overflow: hidden;

@@ -49,7 +49,7 @@ const Main = (props) => {
       }
   },[dishState.typeChanged]);
 
-const dependForLeftStyle = (dishState.ifTypeWasSetFirstTime && formRdx.values.type === "soup" ? formRdx.values.spiciness_scale : dishState.ifTypeWasSetFirstTime)
+const dependForLeftStyle = (dishState.ifTypeWasSetFirstTime && formRdx.values.type === "soup" ? formRdx.values.spiciness_scale : dishState.typeChanged);
 
 useEffect(() => {
   // call a function to set a left distance of bubble with the default value - dedicated to "range" type input

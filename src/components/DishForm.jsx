@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import PropTypes, { exact } from "prop-types";
 import { DishContext } from "./Main";
-import { Field, reduxForm, SubmissionError } from "redux-form";
+import { Field, reduxForm, SubmissionError, reset } from "redux-form";
 import Input from "./Input";
 import RenderField from "./RenderField";
 import { validate } from "../functions/validation";
@@ -11,7 +11,7 @@ export const defaultOption = "Select an option";
 
 const startlValues = {
   name: undefined,
-  preparation_time: "00:00:00",
+  preparation_time: "00:15:00",
   type: defaultOption,
 };
 
@@ -28,6 +28,7 @@ const DishForm = (props) => {
     ifTypeChanged,
     setFinalResp,
     resetDishState,
+    setWelcome,
     checkIfAnyChangeMade,
     addToInputDivRef,
     inputDivRef,
@@ -52,6 +53,9 @@ const DishForm = (props) => {
   useEffect(() => {
     // console.log("formRdx");
     // console.log(formRdx);
+    // console.log("submitting: ", submitting);
+    // console.log("submitFailed: ", submitFailed);
+    // console.log("submitSucceeded: ", submitSucceeded);
   });
 
   useEffect(() => {
@@ -118,7 +122,10 @@ const DishForm = (props) => {
         .then(
           (res) => {
             setFinalResp("Your order has been sent successfully!");
+            setWelcome("Thank you!");
             console.log(res);
+            // resetForm();
+            // reset("formRdx");
             console.log("initialize startlValues");
             initialize(startlValues);
             checkIfAnyChangeMade(false);
@@ -376,9 +383,13 @@ const DishForm = (props) => {
   );
 };
 
+// reset form after sending data successfully
+const afterSubmit = (result, dispatch) => dispatch(reset("formRdx"));
+
 const DishesForm = reduxForm({
   form: "formRdx",
   validate,
+  onSubmitSuccess: afterSubmit,
 })(DishForm);
 
 export default React.memo(DishesForm);

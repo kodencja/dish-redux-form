@@ -181,7 +181,8 @@ form {
 .reply {
   font-weight: weight("fatter");
   font-size: size("large");
-  color: lighten($title-bgr-col, 10%);
+  color: darken($title-bgr-col, 10%);
+  // color: $fine;
   margin-top: distance("small");
   margin-bottom: distance("small-quite");
 }

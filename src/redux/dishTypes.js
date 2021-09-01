@@ -7,3 +7,4 @@ export const setMinVal = "setMinVal";
 export const setMaxVal = "setMaxVal";
 export const imgName = "imgName";
 export const reset = "reset";
+export const welcome_txt = "welcomeTxt";

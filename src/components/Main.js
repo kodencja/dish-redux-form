@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import PropTypes, { exact } from 'prop-types';
 import { connect } from "react-redux";
-import { setOutputStyle, setTypeSet, setFinalResponse, setMin, setMax, setTypeChange, resetAll, setImgSrc, checkIfAnyChangeMade } from "../redux/dishActions";
+import { setOutputStyle, setTypeSet, setFinalResponse, setMin, setMax, setTypeChange, resetAll, setImgSrc, checkIfAnyChangeMade, setWelcomeTxt } from "../redux/dishActions";
 import { appearInput } from "../functions/appearing";
 import { set_Output_Style } from "../functions/setOutputStyle";
 import DishForm, { defaultOption } from "./DishForm";
@@ -9,7 +9,7 @@ import DishForm, { defaultOption } from "./DishForm";
 export const DishContext = React.createContext();
 
 const Main = (props) => {
-  const { dishState, dishFormRdx, setOutputLeft, setType, ifTypeChanged, setImgSrc, setFinalResp, setMinValue, setMaxValue, resetDishState, checkIfAnyChangeMade } = props;
+  const { dishState, dishFormRdx, setOutputLeft, setType, ifTypeChanged, setImgSrc, setFinalResp, setWelcome, resetDishState, checkIfAnyChangeMade } = props;
 
   const { formRdx } = dishFormRdx;
 
@@ -124,7 +124,7 @@ useEffect(() => {
   );
 
   const welcome = (
-    <p className="welcome" ref={welcomeRef}>Hungry?</p>
+    <p className="welcome" ref={welcomeRef}>{dishState.welcomeTxt}</p>
   )
 
   return (
@@ -140,10 +140,9 @@ useEffect(() => {
           setOutputLeft,
           setType,
           ifTypeChanged,
-          setMaxValue,
-          setMinValue,
           setFinalResp,
           resetDishState,
+          setWelcome,
           checkIfAnyChangeMade,
           addToInputDivRef,
           inputDivRef,
@@ -178,8 +177,7 @@ const mapDispatchToProps = (dispatch) => {
     ifTypeChanged: (value) => dispatch(setTypeChange(value)),
     setImgSrc: (value) => dispatch(setImgSrc(value)),
     setFinalResp: (value) => dispatch(setFinalResponse(value)),
-    setMinValue: (value) => dispatch(setMin(value)),
-    setMaxValue: (value) => dispatch(setMax(value)),
+    setWelcome: (value) => dispatch(setWelcomeTxt(value)),
     resetDishState: () => dispatch(resetAll()),
     checkIfAnyChangeMade: (value) => dispatch(checkIfAnyChangeMade(value))
   };

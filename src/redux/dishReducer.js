@@ -8,12 +8,14 @@ import {
   setMinVal,
   typeChange,
   typeSet,
+  welcome_txt,
 } from "./dishTypes";
 
 const initState = {
   url: "https://jsonplaceholder.typicode.com/posts",
   outputStyle: { left: "0" },
   finalResponse: "",
+  welcomeTxt: "Hungry?",
   anyChangeMade: false,
   ifTypeWasSetFirstTime: false,
   typeChanged: false,
@@ -30,6 +32,9 @@ const dishReducer = (state = initState, action) => {
       };
     case final_response:
       return { ...state, finalResponse: action.payload };
+
+    case welcome_txt:
+      return { ...state, welcomeTxt: action.payload };
 
     case typeSet:
       return { ...state, ifTypeWasSetFirstTime: action.payload };

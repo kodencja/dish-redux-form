@@ -1,4 +1,4 @@
-import { output_Style, final_response, typeSet, setMinVal, setMaxVal, typeChange, reset, imgName, any_change_made } from "./dishTypes"
+import { output_Style, final_response, typeSet, typeChange, reset, imgName, any_change_made, welcome_txt } from "./dishTypes"
 
 
 export const setOutputStyle = (value) =>{
@@ -29,19 +29,10 @@ export const setTypeChange = (value) => {
     }
 }
 
-export const setMin = (arg) => {
+export const setWelcomeTxt = (value) => {
     return {
-        type: setMinVal,
-        inputName: arg.name,
-        payload: arg.value
-    }
-}
-
-export const setMax = (arg) => {
-    return {
-        type: setMaxVal,
-        inputName: arg.name,
-        payload: arg.value
+        type: welcome_txt,
+        payload: value
     }
 }
 

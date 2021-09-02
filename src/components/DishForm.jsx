@@ -1,13 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import PropTypes, { exact } from "prop-types";
 import { DishContext } from "./Main";
-import {
-  Field,
-  reduxForm,
-  SubmissionError,
-  reset,
-  initialize,
-} from "redux-form";
+import { Field, reduxForm, SubmissionError, reset } from "redux-form";
 import Input from "./Input";
 import RenderField from "./RenderField";
 import { validate } from "../functions/validation";
@@ -51,6 +45,15 @@ const DishForm = (props) => {
   useEffect(() => {
     initialize(startlValues);
   }, []);
+
+  // reinitialize values after submition succeeds
+  useEffect(() => {
+    if (submitSucceeded) {
+      // console.log("Reinitialize startlValues");
+      initialize(startlValues);
+    }
+  }, [submitSucceeded]);
+  // }, [onSubmitSuccess]);
 
   useEffect(() => {
     if (
@@ -371,10 +374,7 @@ const DishForm = (props) => {
 };
 
 // reset form after sending data successfully
-const afterSubmit = (result, dispatch) => {
-  dispatch(reset("formRdx"));
-  initialize(startlValues);
-};
+const afterSubmit = (result, dispatch) => dispatch(reset("formRdx"));
 
 const DishesForm = reduxForm({
   form: "formRdx",

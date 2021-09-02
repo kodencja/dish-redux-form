@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/dish-redux-form/static/css/main.4091ae35.chunk.css",
-    "main.js": "/dish-redux-form/static/js/main.6f23c8df.chunk.js",
-    "main.js.map": "/dish-redux-form/static/js/main.6f23c8df.chunk.js.map",
+    "main.css": "/dish-redux-form/static/css/main.242509cd.chunk.css",
+    "main.js": "/dish-redux-form/static/js/main.26b5db00.chunk.js",
+    "main.js.map": "/dish-redux-form/static/js/main.26b5db00.chunk.js.map",
     "runtime-main.js": "/dish-redux-form/static/js/runtime-main.0a2c4b2d.js",
     "runtime-main.js.map": "/dish-redux-form/static/js/runtime-main.0a2c4b2d.js.map",
     "static/js/2.b4507905.chunk.js": "/dish-redux-form/static/js/2.b4507905.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.a1bb55fa.chunk.js": "/dish-redux-form/static/js/3.a1bb55fa.chunk.js",
     "static/js/3.a1bb55fa.chunk.js.map": "/dish-redux-form/static/js/3.a1bb55fa.chunk.js.map",
     "index.html": "/dish-redux-form/index.html",
-    "static/css/main.4091ae35.chunk.css.map": "/dish-redux-form/static/css/main.4091ae35.chunk.css.map",
+    "static/css/main.242509cd.chunk.css.map": "/dish-redux-form/static/css/main.242509cd.chunk.css.map",
     "static/js/2.b4507905.chunk.js.LICENSE.txt": "/dish-redux-form/static/js/2.b4507905.chunk.js.LICENSE.txt",
     "static/media/pizza.jpg": "/dish-redux-form/static/media/pizza.a8e2abcd.jpg",
     "static/media/plaid.jpg": "/dish-redux-form/static/media/plaid.d089c43d.jpg",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.0a2c4b2d.js",
     "static/js/2.b4507905.chunk.js",
-    "static/css/main.4091ae35.chunk.css",
-    "static/js/main.6f23c8df.chunk.js"
+    "static/css/main.242509cd.chunk.css",
+    "static/js/main.26b5db00.chunk.js"
   ]
 }

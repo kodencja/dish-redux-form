@@ -1,7 +1,16 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import PropTypes, { exact } from 'prop-types';
+import PropTypes, { exact } from "prop-types";
 import { connect } from "react-redux";
-import { setOutputStyle, setTypeSet, setFinalResponse, setMin, setMax, setTypeChange, resetAll, setImgSrc, checkIfAnyChangeMade, setWelcomeTxt } from "../redux/dishActions";
+import {
+  setOutputStyle,
+  setTypeSet,
+  setFinalResponse,
+  setTypeChange,
+  resetAll,
+  setImgSrc,
+  checkIfAnyChangeMade,
+  setWelcomeTxt,
+} from "../redux/dishActions";
 import { appearInput } from "../functions/appearing";
 import { set_Output_Style } from "../functions/setOutputStyle";
 import DishForm, { defaultOption } from "./DishForm";
@@ -9,7 +18,18 @@ import DishForm, { defaultOption } from "./DishForm";
 export const DishContext = React.createContext();
 
 const Main = (props) => {
-  const { dishState, dishFormRdx, setOutputLeft, setType, ifTypeChanged, setImgSrc, setFinalResp, setWelcome, resetDishState, checkIfAnyChangeMade } = props;
+  const {
+    dishState,
+    dishFormRdx,
+    setOutputLeft,
+    setType,
+    ifTypeChanged,
+    setImgSrc,
+    setFinalResp,
+    setWelcome,
+    resetDishState,
+    checkIfAnyChangeMade,
+  } = props;
 
   const { formRdx } = dishFormRdx;
 
@@ -32,45 +52,44 @@ const Main = (props) => {
   //   console.log(dishFormRdx);
   // },[])
 
-
   useEffect(() => {
-    if(dishState.ifTypeWasSetFirstTime && formRdx.values.type !== undefined){
+    if (dishState.ifTypeWasSetFirstTime && formRdx.values.type !== undefined) {
       setTimeout(() => {
         setImgSrc(formRdx.values.type);
       }, 500);
     }
-  }, [dishState.typeChanged])
-
+  }, [dishState.typeChanged]);
 
   // handle input appearing animation
   useEffect(() => {
-      if(inputDivRef.current !== undefined && btnRef.current !== undefined){
-        appearInput(inputDivRef.current, btnRef.current);
-      }
-  },[dishState.typeChanged]);
+    if (inputDivRef.current !== undefined && btnRef.current !== undefined) {
+      appearInput(inputDivRef.current, btnRef.current);
+    }
+  }, [dishState.typeChanged]);
 
-const dependForLeftStyle = (dishState.ifTypeWasSetFirstTime && formRdx.values.type === "soup" ? formRdx.values.spiciness_scale : dishState.typeChanged);
+  const dependForLeftStyle =
+    dishState.ifTypeWasSetFirstTime && formRdx.values.type === "soup"
+      ? formRdx.values.spiciness_scale
+      : dishState.typeChanged;
 
-useEffect(() => {
-  // call a function to set a left distance of bubble with the default value - dedicated to "range" type input
-  if (inputDivRef.current !== undefined && inputDivRef.current !== null) {
-    inputDivRef.current.forEach((el) => {
-      const elemInput =  el.children[0].children[1];
-      const elType = elemInput.getAttribute("type");
+  useEffect(() => {
+    // call a function to set a left distance of bubble with the default value - dedicated to "range" type input
+    if (inputDivRef.current !== undefined && inputDivRef.current !== null) {
+      inputDivRef.current.forEach((el) => {
+        const elemInput = el.children[0].children[1];
+        const elType = elemInput.getAttribute("type");
 
-      if (elType === "range") {
-        const elVal = elemInput.getAttribute("value");
+        if (elType === "range") {
+          const elVal = elemInput.getAttribute("value");
 
-        // set dynamically the bubble's 'left' attribute
-        if(elVal !== undefined && elVal !== ''){
-          set_Output_Style(elVal, elemInput, "%", setOutputLeft);
+          // set dynamically the bubble's 'left' attribute
+          if (elVal !== undefined && elVal !== "") {
+            set_Output_Style(elVal, elemInput, "%", setOutputLeft);
+          }
         }
-
-      }
-    });
-  }
-
-}, [dependForLeftStyle]);
+      });
+    }
+  }, [dependForLeftStyle]);
 
   // handle main title appearing and "Hungry?" welcome question
   useEffect(() => {
@@ -87,36 +106,44 @@ useEffect(() => {
   }, []);
 
   // input's array refs
-  const addToInputDivRef = useCallback((el) => {
-    // add inputDivs at the beginning
-    if(!dishState.typeChanged && !dishState.ifTypeWasSetFirstTime){
-      if (el && !inputDivRef.current.includes(el)) {
-        inputDivRef.current.push(el); 
+  const addToInputDivRef = useCallback(
+    (el) => {
+      // add inputDivs at the beginning
+      if (!dishState.typeChanged && !dishState.ifTypeWasSetFirstTime) {
+        if (el && !inputDivRef.current.includes(el)) {
+          inputDivRef.current.push(el);
+        }
       }
-    } 
-    // add additional inputDivs on every 'type' change
-    else if(dishState.typeChanged) {
-      
-      // console.log(inputDivRef.current);
-      if (el && !inputDivRef.current.includes(el)) {
-        inputDivRef.current.push(el); 
+      // add additional inputDivs on every 'type' change
+      else if (dishState.typeChanged) {
+        // console.log(inputDivRef.current);
+        if (el && !inputDivRef.current.includes(el)) {
+          inputDivRef.current.push(el);
+        }
       }
-    }
 
-    // if all inputDivs are added restore dish.'typeChanged' to false
-    if(inputDivRef.current.length >= 4){
-      setTimeout(() => {
-        ifTypeChanged(false);
-      }, 1050);
-    }
-  },[dishState.typeChanged]);
+      // if all inputDivs are added restore dish.'typeChanged' to false
+      if (inputDivRef.current.length >= 4) {
+        setTimeout(() => {
+          ifTypeChanged(false);
+        }, 1050);
+      }
+    },
+    [dishState.typeChanged]
+  );
 
   const photo = (
     <img
-      alt={dishState.ifTypeWasSetFirstTime && !dishState.typeChanged ? formRdx.values.type : ""}
-      className={`photo ${!dishState.typeChanged ? 'hanging' : 'hide-photo'} `}
+      alt={
+        dishState.ifTypeWasSetFirstTime && !dishState.typeChanged
+          ? formRdx.values.type
+          : ""
+      }
+      className={`photo ${!dishState.typeChanged ? "hanging" : "hide-photo"} `}
       src={
-        dishState.ifTypeWasSetFirstTime && dishState.imgSrc !== '' && formRdx.values.type !== undefined
+        dishState.ifTypeWasSetFirstTime &&
+        dishState.imgSrc !== "" &&
+        formRdx.values.type !== undefined
           ? require(`../img/${dishState.imgSrc}.jpg`).default
           : ""
       }
@@ -124,8 +151,10 @@ useEffect(() => {
   );
 
   const welcome = (
-    <p className="welcome" ref={welcomeRef}>{dishState.welcomeTxt}</p>
-  )
+    <p className="welcome" ref={welcomeRef}>
+      {dishState.welcomeTxt}
+    </p>
+  );
 
   return (
     <div className="container">
@@ -134,34 +163,35 @@ useEffect(() => {
       </h2>
       <div className="dishes flex justify-center align-center" ref={dishesRef}>
         <DishContext.Provider
-        value={{
-          dishState,
-          formRdx,
-          setOutputLeft,
-          setType,
-          ifTypeChanged,
-          setFinalResp,
-          resetDishState,
-          setWelcome,
-          checkIfAnyChangeMade,
-          addToInputDivRef,
-          inputDivRef,
-          btnRef
-        }}
+          value={{
+            dishState,
+            formRdx,
+            setOutputLeft,
+            setType,
+            ifTypeChanged,
+            setFinalResp,
+            resetDishState,
+            setWelcome,
+            checkIfAnyChangeMade,
+            addToInputDivRef,
+            inputDivRef,
+            btnRef,
+          }}
         >
-        <DishForm />
+          <DishForm />
         </DishContext.Provider>
         <div className="image mrg-x-auto">
-        <div className="answer" ref={answerRef}>
-          {dishState.ifTypeWasSetFirstTime && formRdx.values.type !== defaultOption ? photo : welcome}
+          <div className="answer" ref={answerRef}>
+            {dishState.ifTypeWasSetFirstTime &&
+            formRdx.values.type !== defaultOption
+              ? photo
+              : welcome}
+          </div>
         </div>
       </div>
-      </div>
-
     </div>
   );
 };
-
 
 const mapStateToProps = (state) => {
   return {
@@ -179,9 +209,95 @@ const mapDispatchToProps = (dispatch) => {
     setFinalResp: (value) => dispatch(setFinalResponse(value)),
     setWelcome: (value) => dispatch(setWelcomeTxt(value)),
     resetDishState: () => dispatch(resetAll()),
-    checkIfAnyChangeMade: (value) => dispatch(checkIfAnyChangeMade(value))
+    checkIfAnyChangeMade: (value) => dispatch(checkIfAnyChangeMade(value)),
   };
 };
 
+
+
+Main.propTypes = {
+  DishForm: PropTypes.element,
+  photo: PropTypes.node,
+  welcome: PropTypes.number,
+  welcomeRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+  defaultOption: PropTypes.number,
+  set_Output_Style: PropTypes.func,
+  setOutputLeft: PropTypes.func,
+  setType: PropTypes.func,
+  ifTypeChanged: PropTypes.func,
+  setImgSrc: PropTypes.func,
+  setFinalResp: PropTypes.func,
+  setWelcome: PropTypes.func,
+  resetDishState: PropTypes.func,
+  checkIfAnyChangeMade: PropTypes.func,
+  dishState: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    outputStyle: exact({ left: PropTypes.string }).isRequired,
+    finalResponse: PropTypes.string.isRequired,
+    welcomeTxt: PropTypes.string.isRequired,
+    anyChangeMade: PropTypes.bool.isRequired,
+    ifTypeWasSetFirstTime: PropTypes.bool.isRequired,
+    typeChanged: PropTypes.bool.isRequired,
+    imgSrc: PropTypes.string.isRequired,
+  }),
+  formRdx: PropTypes.shape({
+    anyTouched: PropTypes.bool,
+    fields: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool)),
+    initial: PropTypes.shape({
+      name: PropTypes.string,
+      preparation_time: PropTypes.string,
+      type: PropTypes.string,
+    }),
+    registeredFields: PropTypes.shape({
+      name: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      preparation_time: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      type: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      no_of_slices: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      diameter: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      spiciness_scale: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      slices_of_bread: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+    }),
+    values: PropTypes.shape({
+      name: PropTypes.string,
+      preparation_time: PropTypes.string,
+      type: PropTypes.string,
+      no_of_slices: PropTypes.number,
+      diameter: PropTypes.number,
+      spiciness_scale: PropTypes.number,
+      slices_of_bread: PropTypes.number,
+    }),
+  }),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -1,9 +1,13 @@
-import { defaultOption, getChangeProp } from "../components/DishForm";
+import { defaultOption } from "../components/DishForm";
 
 // check time format
 // 3 groups of 2 character separated by : each character must be a digit contained in that specific ranges
 const isValidTime = (time) => {
   let error = "";
+
+  if (time.length < 8) {
+    time = time + ":00";
+  }
 
   if (time < "00:15:00") {
     error = "We need at least 15 min to prepare the dish!";
@@ -17,14 +21,11 @@ const isValidTime = (time) => {
 
 
 export const validate = (value, rest) => {
+  // console.log("validate Fn");
   const {
     name = "",
     preparation_time = "",
     type = "",
-    no_of_slices = "",
-    diameter = "",
-    spiciness_scale = "",
-    slices_of_bread = "",
   } = value;
 
   const errors = {};
@@ -62,37 +63,40 @@ export const validate = (value, rest) => {
         }
         // for numeric values
         else {
-          if (value[eachProp].length > 10) {
+          if (valueWithoutSpaces.length > 10) {
             errors[eachProp] = `The number is too big!`;
           } else if (valueWithoutSpaces === "0" || value[eachProp] <= 0) {
             errors[eachProp] = "The number must exceed 0";
-          }
-
-          if (eachProp === "preparation_time") {
-            const { test, errorTime } = isValidTime(valueWithoutSpaces);
-
-            if (!test) {
-              errors.preparation_time = "Use only numbers in time format";
-            }
-            if (errorTime !== "") {
-              errors.preparation_time = errorTime;
-            }
           } else {
-            let regNo = /\D/gim;
-
-            if (eachProp === "diameter") {
-              regNo = /^[+-]?([0-9]*[.])?[0-9]+$/;
-              let ifHasNumbers = regNo.test(valueWithoutSpaces);
-              if (!ifHasNumbers) {
-                errors[eachProp] = `Use floating no`;
+            if (eachProp === "preparation_time") {
+              const { test, errorTime } = isValidTime(valueWithoutSpaces);
+  
+              if (!test) {
+                errors.preparation_time = "Use only numbers in time format";
+              }
+              if (errorTime !== "") {
+                errors.preparation_time = errorTime;
               }
             } else {
-              let ifHasNumbers = regNo.test(valueWithoutSpaces);
-              if (ifHasNumbers) {
-                errors[eachProp] = `Use only integer no`;
+              let regNo = /\D/gim;
+  
+              if (eachProp === "diameter") {
+                regNo = /^[+-]?([0-9]*[.])?[0-9]+$/;
+                let ifHasNumbers = regNo.test(valueWithoutSpaces);
+                if (!ifHasNumbers) {
+                  errors[eachProp] = `Use floating no`;
+                }
+              } else {
+                let ifHasNumbers = regNo.test(valueWithoutSpaces);
+                // console.log(ifHasNumbers);
+                if (ifHasNumbers) {
+                  errors[eachProp] = `Use only integer no`;
+                }
               }
             }
           }
+
+
         }
       }
     }

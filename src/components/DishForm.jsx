@@ -1,7 +1,13 @@
 import React, { useEffect, useContext } from "react";
 import PropTypes, { exact } from "prop-types";
 import { DishContext } from "./Main";
-import { Field, reduxForm, SubmissionError, reset } from "redux-form";
+import {
+  Field,
+  reduxForm,
+  SubmissionError,
+  reset,
+  initialize,
+} from "redux-form";
 import Input from "./Input";
 import RenderField from "./RenderField";
 import { validate } from "../functions/validation";
@@ -13,10 +19,6 @@ const startlValues = {
   name: undefined,
   preparation_time: "00:15:00",
   type: defaultOption,
-};
-
-export const getChangeProp = (change) => {
-  return change;
 };
 
 const DishForm = (props) => {
@@ -41,22 +43,14 @@ const DishForm = (props) => {
     submitting,
     submitFailed,
     submitSucceeded,
-    initialValues,
   } = props;
 
   const { finalResponse } = dishState;
 
+  // initialize values at the very beginning
   useEffect(() => {
     initialize(startlValues);
   }, []);
-
-  useEffect(() => {
-    // console.log("formRdx");
-    // console.log(formRdx);
-    // console.log("submitting: ", submitting);
-    // console.log("submitFailed: ", submitFailed);
-    // console.log("submitSucceeded: ", submitSucceeded);
-  });
 
   useEffect(() => {
     if (
@@ -111,10 +105,6 @@ const DishForm = (props) => {
   const sendData = (formData) => {
     return new Promise(async (resolve, reject) => {
       setFinalResp("Wait...");
-      // console.log("formData");
-      // console.log(formData);
-      // console.log("formRdx");
-      // console.log(formRdx);
 
       const reviseDataBeforeSend = await choosePropsToSend(formData);
 
@@ -124,10 +114,6 @@ const DishForm = (props) => {
             setFinalResp("Your order has been sent successfully!");
             setWelcome("Thank you!");
             console.log(res);
-            // resetForm();
-            // reset("formRdx");
-            console.log("initialize startlValues");
-            initialize(startlValues);
             checkIfAnyChangeMade(false);
             resolve();
           },
@@ -179,6 +165,7 @@ const DishForm = (props) => {
   };
 
   const checkInteger = (val) => {
+    // console.log("val: ", val);
     if (!val || val === "0") {
       return val;
     } else {
@@ -348,7 +335,6 @@ const DishForm = (props) => {
               id="slices_of_bread"
               className="form-control"
               add_class="number-width hide-right"
-              parse={(value) => Number(value)}
               step={1}
               min={1}
               aria-label="slices_of_bread"
@@ -360,6 +346,7 @@ const DishForm = (props) => {
                   : false
               }
               no_of_inputs={1}
+              parse={checkInteger}
             />
           ) : null
         ) : null}
@@ -384,12 +371,118 @@ const DishForm = (props) => {
 };
 
 // reset form after sending data successfully
-const afterSubmit = (result, dispatch) => dispatch(reset("formRdx"));
+const afterSubmit = (result, dispatch) => {
+  dispatch(reset("formRdx"));
+  initialize(startlValues);
+};
 
 const DishesForm = reduxForm({
   form: "formRdx",
   validate,
   onSubmitSuccess: afterSubmit,
 })(DishForm);
+
+DishesForm.propTypes = {
+  DishForm: PropTypes.element,
+  btnRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+  inputDivRef: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ])
+  ),
+  reset: PropTypes.func,
+  afterSubmit: PropTypes.func,
+  sendToServer: PropTypes.func,
+  sendData: PropTypes.func,
+  choosePropsToSend: PropTypes.func,
+  finalTimeValidation: PropTypes.func,
+  validate: PropTypes.func,
+  watchForStartChangeMade: PropTypes.func,
+  checkFloat: PropTypes.func,
+  checkInteger: PropTypes.func,
+  getReplyClasses: PropTypes.func,
+  typeOnChange: PropTypes.func,
+  addToInputDivRef: PropTypes.func,
+  Input: PropTypes.element,
+  Field: PropTypes.element,
+  RenderField: PropTypes.element,
+  setOutputLeft: PropTypes.func,
+  setType: PropTypes.func,
+  ifTypeChanged: PropTypes.func,
+  setImgSrc: PropTypes.func,
+  setFinalResp: PropTypes.func,
+  setWelcome: PropTypes.func,
+  resetDishState: PropTypes.func,
+  checkIfAnyChangeMade: PropTypes.func,
+  dishState: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    outputStyle: exact({ left: PropTypes.string }).isRequired,
+    finalResponse: PropTypes.string.isRequired,
+    welcomeTxt: PropTypes.string.isRequired,
+    anyChangeMade: PropTypes.bool.isRequired,
+    ifTypeWasSetFirstTime: PropTypes.bool.isRequired,
+    typeChanged: PropTypes.bool.isRequired,
+    imgSrc: PropTypes.string.isRequired,
+  }),
+  formRdx: PropTypes.shape({
+    anyTouched: PropTypes.bool,
+    fields: PropTypes.objectOf(PropTypes.objectOf(PropTypes.bool)),
+    initial: PropTypes.shape({
+      name: PropTypes.string,
+      preparation_time: PropTypes.string,
+      type: PropTypes.string,
+    }),
+    registeredFields: PropTypes.shape({
+      name: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      preparation_time: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      type: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      no_of_slices: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      diameter: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      spiciness_scale: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+      slices_of_bread: PropTypes.exact({
+        name: PropTypes.string,
+        type: PropTypes.string,
+        count: PropTypes.number,
+      }),
+    }),
+    values: PropTypes.shape({
+      name: PropTypes.string,
+      preparation_time: PropTypes.string,
+      type: PropTypes.string,
+      no_of_slices: PropTypes.number,
+      diameter: PropTypes.number,
+      spiciness_scale: PropTypes.number,
+      slices_of_bread: PropTypes.number,
+    }),
+  }),
+};
 
 export default React.memo(DishesForm);

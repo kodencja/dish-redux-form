@@ -13,7 +13,7 @@ export const sendToServer = (formData, url) => {
       axios(options)
         .then(
           (res) => {
-            console.log(res.data);
+            // console.log(res.data);
             resolve(res.data);
           },
           (err) => {

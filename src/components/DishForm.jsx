@@ -13,6 +13,7 @@ const startlValues = {
   name: undefined,
   preparation_time: "00:15:00",
   type: defaultOption,
+  spiciness_scale: 1,
 };
 
 const DishForm = (props) => {
@@ -146,16 +147,18 @@ const DishForm = (props) => {
 
   const typeOnChange = (e) => {
     watchForStartChangeMade();
+
     // create new inputDivRef array with three inputDivRefs as constant elements
     let inputsDivRef_copy = inputDivRef.current.slice(0, 3);
     inputDivRef.current = [];
     inputDivRef.current = inputsDivRef_copy;
 
-    if (e.target.value === "soup" && !formRdx.values.spiciness_scale) {
-      initialize({ ...formRdx.values, spiciness_scale: 1 });
-    }
+    // if (e.target.value === "soup" && !formRdx.values.spiciness_scale) {
+    // initialize({ ...formRdx.values, spiciness_scale: 1 });
+    // }
     setTimeout(() => {
       ifTypeChanged(true);
+      // console.log(formRdx);
     }, 50);
   };
 

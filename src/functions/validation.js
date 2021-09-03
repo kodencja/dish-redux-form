@@ -22,6 +22,7 @@ const isValidTime = (time) => {
 
 export const validate = (value, rest) => {
   // console.log("validate Fn");
+  // console.log(value);
   const {
     name = "",
     preparation_time = "",
@@ -42,12 +43,14 @@ export const validate = (value, rest) => {
   // advanced validation - check type of the value (numbers or letters)
   if (rest.registeredFields && rest.registeredFields !== undefined) {
     for (let eachProp in rest.registeredFields) {
-      if (value[eachProp] !== undefined && value[eachProp] !== "") {
+      // console.log(eachProp);
+      // console.log(value[eachProp]);
+      if(value[eachProp] === undefined && eachProp !== "name" && eachProp !== "preparation_time" && eachProp !== "type" ){
+        errors[eachProp] = `This field is required`;
+      } else if (value[eachProp] !== undefined && value[eachProp] !== "") {
         let valueWithoutSpaces;
         valueWithoutSpaces = value[eachProp].toString().split(" ").join("");
-        if (valueWithoutSpaces === "") {
-          errors[eachProp] = `${eachProp} is required`;
-        }
+        // console.log(valueWithoutSpaces);
 
         // for alpha characters values
         if (eachProp === "name" || eachProp === "type") {

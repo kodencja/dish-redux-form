@@ -61,6 +61,21 @@
   @return map-get($distance-sizes, $distance-name);
 }
 
+@mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
+  box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color,
+    0px 0px $shadow-size lighten($shadow-color, 5%);
+}
+
+@mixin thumb {
+  @include shadow($thumb-shadow-size, $thumb-shadow-blur, $thumb-shadow-color);
+  border: $thumb-border-width solid $thumb-border-color;
+  height: $thumb-height;
+  width: $thumb-width !important;
+  border-radius: $thumb-radius;
+  background: $thumb-color;
+  cursor: pointer;
+}
+
 // @function color-inverse($color) {
 //   @return invert($color);
 // }

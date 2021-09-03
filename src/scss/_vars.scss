@@ -72,9 +72,10 @@ $border-color: #00a100;
 $thumb-color: #fff;
 
 $border-color1: #ced4da;
+
 $bubble-radius: 4px;
 $bubble-width-no: 32;
-$bubble-width: 32 * 1px;
+$bubble-width: $bubble-width-no * 1px;
 $tight-letter-spacing: 0.25px;
 $tiny-letter-spacing: 0.5px;
 

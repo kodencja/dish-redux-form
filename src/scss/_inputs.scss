@@ -1,22 +1,12 @@
-@mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
-  box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color,
-    0px 0px $shadow-size lighten($shadow-color, 5%);
-}
-
 %track {
   width: $track-width;
   height: $track-height;
   cursor: pointer;
 }
 
-@mixin thumb {
-  @include shadow($thumb-shadow-size, $thumb-shadow-blur, $thumb-shadow-color);
-  border: $thumb-border-width solid $thumb-border-color;
-  height: $thumb-height;
-  width: $thumb-width !important;
-  border-radius: $thumb-radius;
-  background: $thumb-color;
-  cursor: pointer;
+%marg-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input[type="range"] {
@@ -115,22 +105,27 @@ input[type="range"] {
   font-size: size("quite-normal");
   background-color: $bubble-bgr-color;
   color: $thumb-color;
-  @include paddMrg("margin", "top", $bubble-radius * (-2));
-  @include paddMrg("padding", $bubble-radius / 2, $bubble-radius * 2);
+  margin-top: $bubble-radius * (-2);
+  padding: $bubble-radius / 2 $bubble-radius * 2;
+  // padding: $bubble-radius, $bubble-radius;
+  // padding-right: $bubble-radius;
+  // @include paddMrg("margin", "top", $bubble-radius * (-2));
+  // @include paddMrg("padding", $bubble-radius / 2, $bubble-radius * 2);
   position: absolute;
+  display: inline-block;
   border-radius: $bubble-radius;
   // left: 0%;
   // left: 6px;
   // left: 2.07%;
-  display: inline-block;
   text-align: center;
-  width: 32px;
-  max-width: 32px;
-  padding: 4px;
+  width: $bubble-width;
+  max-width: $bubble-width;
+  // padding: 4px;
   // margin-left: 6px;
   // margin-left: 14px;
 
   &:after {
+    position: absolute;
     display: inline-block;
     width: 0;
     height: 0;
@@ -140,7 +135,6 @@ input[type="range"] {
     border-left-width: 8px;
     border-style: solid;
     border-color: $bubble-bgr-color transparent transparent transparent;
-    position: absolute;
     top: 100%;
     left: 25%;
     content: "";
@@ -160,7 +154,7 @@ label {
     distance("zero")
   );
   text-align: center;
-  display: block !important;
+  display: block;
   color: #004da5;
   // color: rgb(48, 95, 180);
   font-weight: weight("fatter");
@@ -168,22 +162,19 @@ label {
 
 // .form-group {
 .mrg-x-auto {
-  margin-left: auto;
-  margin-right: auto;
+  @extend %marg-auto;
   // transition: all $short-time ease-out;
 }
 
 .range {
   width: 250px;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  @extend %marg-auto;
 }
 
 .number-width {
   width: 200px;
-  margin-left: auto;
-  margin-right: auto;
+  @extend %marg-auto;
 }
 
 .input-block {

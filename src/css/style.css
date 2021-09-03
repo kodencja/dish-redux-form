@@ -4,6 +4,11 @@ input[type="range"]::-webkit-slider-runnable-track, input[type="range"]::-moz-ra
   cursor: pointer;
 }
 
+.mrg-x-auto, .range, .number-width {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 input[type="range"] {
   -webkit-appearance: none;
   margin: 6.66667px 0;
@@ -105,15 +110,15 @@ input[type="range"]:focus::-ms-fill-upper {
   margin-top: -8px;
   padding: 2px 8px;
   position: absolute;
-  border-radius: 4px;
   display: inline-block;
+  border-radius: 4px;
   text-align: center;
   width: 32px;
   max-width: 32px;
-  padding: 4px;
 }
 
 .bubble:after {
+  position: absolute;
   display: inline-block;
   width: 0;
   height: 0;
@@ -123,7 +128,6 @@ input[type="range"]:focus::-ms-fill-upper {
   border-left-width: 8px;
   border-style: solid;
   border-color: #cf4b34 transparent transparent transparent;
-  position: absolute;
   top: 100%;
   left: 25%;
   content: "";
@@ -139,27 +143,18 @@ label {
   margin-bottom: 0.5rem;
   margin-left: 0;
   text-align: center;
-  display: block !important;
+  display: block;
   color: #004da5;
   font-weight: 600;
-}
-
-.mrg-x-auto {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .range {
   width: 250px;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .number-width {
   width: 200px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .input-block {

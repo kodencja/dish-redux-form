@@ -61,9 +61,21 @@
   @return map-get($distance-sizes, $distance-name);
 }
 
+@function sizes_px($size_px_name) {
+  @return map-get($sizes-px, $size_px_name);
+}
+
 @mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
   box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color,
     0px 0px $shadow-size lighten($shadow-color, 5%);
+}
+
+@mixin box_shadow($size_x, $size_y, $blur, $spread, $color) {
+  box-shadow: $size_x $size_y $blur $spread $color;
+}
+
+@mixin text_shadow($size_x, $size_y, $blur, $color) {
+  box-shadow: $size_x $size_y $blur $color;
 }
 
 @mixin thumb {

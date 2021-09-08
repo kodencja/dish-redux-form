@@ -4,15 +4,29 @@
   cursor: pointer;
 }
 
-%marg-auto {
+%marg_auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+%inline_absl {
+  position: absolute;
+  display: inline-block;
+}
+
+%grey_opac_full {
+  color: $mid-gray1;
+  opacity: 1;
 }
 
 input[type="range"] {
   -webkit-appearance: none;
   margin: $thumb-height/3 0;
-  width: $track-width;
+  // margin: $thumb-height/3 15px;
+  // width: $track-width / 1.5;
+  max-width: sizes_px("five") * 50;
+  // text-align: center;
+  // @extend %marg_auto;
 
   &:focus {
     outline: none;
@@ -39,8 +53,8 @@ input[type="range"] {
     margin-bottom: (
       ((-$track-border-width * 2 + $track-height) / 2) - ($thumb-height / 2)
     );
-    margin-top: -6px;
-    margin-bottom: -6px;
+    margin-top: sizes_px("three") * (-2);
+    margin-bottom: sizes_px("three") * (-2);
   }
 
   &:focus::-webkit-slider-runnable-track {
@@ -102,118 +116,85 @@ input[type="range"] {
 }
 
 .bubble {
+  @extend %inline_absl;
   font-size: size("quite-normal");
   background-color: $bubble-bgr-color;
   color: $thumb-color;
   margin-top: $bubble-radius * (-2);
   padding: $bubble-radius / 2 $bubble-radius * 2;
-  // padding: $bubble-radius, $bubble-radius;
-  // padding-right: $bubble-radius;
-  // @include paddMrg("margin", "top", $bubble-radius * (-2));
-  // @include paddMrg("padding", $bubble-radius / 2, $bubble-radius * 2);
-  position: absolute;
-  display: inline-block;
   border-radius: $bubble-radius;
-  // left: 0%;
-  // left: 6px;
-  // left: 2.07%;
   text-align: center;
   width: $bubble-width;
   max-width: $bubble-width;
-  // padding: 4px;
-  // margin-left: 6px;
-  // margin-left: 14px;
 
   &:after {
-    position: absolute;
-    display: inline-block;
+    @extend %inline_absl;
     width: 0;
     height: 0;
-    border-top-width: 4px;
-    border-bottom-width: 0px;
-    border-right-width: 8px;
-    border-left-width: 8px;
+    border-top-width: $bubble-radius;
+    border-bottom-width: 0;
+    border-right-width: $bubble-radius * 2;
+    border-left-width: $bubble-radius * 2;
     border-style: solid;
     border-color: $bubble-bgr-color transparent transparent transparent;
-    top: 100%;
-    left: 25%;
+    top: $full;
+    left: $full / 4;
     content: "";
   }
 }
 
-#spiciness_scale {
-  margin-top: 14px;
-}
-
 label {
-  @include paddMrg(
-    "margin",
-    distance("quite-normal"),
-    distance("zero"),
-    distance("small-quite"),
-    distance("zero")
-  );
+  margin: distance("quite-normal") distance("zero") distance("small-quite")
+    distance("zero");
   text-align: center;
   display: block;
-  color: #004da5;
-  // color: rgb(48, 95, 180);
+  color: $label-color;
   font-weight: weight("fatter");
 }
 
-// .form-group {
 .mrg-x-auto {
-  @extend %marg-auto;
-  // transition: all $short-time ease-out;
-}
-
-.range {
-  width: 250px;
-  text-align: center;
-  @extend %marg-auto;
+  @extend %marg_auto;
 }
 
 .number-width {
-  width: 200px;
-  @extend %marg-auto;
+  width: sizes_px("ten") * 20;
+  // width: 200px;
+  @extend %marg_auto;
 }
 
 .input-block {
   width: auto;
   position: relative;
-  @include paddMrg("margin", 0, 10px, 10px, 10px);
-  // transition: transform $rapid-time ease-out;
-  // .error {
-  // background-color: rgba(255, 160, 122, 0.418);
-  //   border: 1px solid $error2;
-  // }
+  margin: 0 sizes_px("ten") sizes_px("ten") sizes_px("ten");
 
   &.error {
     .form-control {
-      border: 2px solid $error2;
+      border: sizes_px("two") solid $error2;
     }
   }
   &.valid {
     .form-control {
-      border: 2px solid $border-color;
+      border: sizes_px("two") solid $border-color;
     }
   }
 }
 
 .form-control {
   height: calc(1.5em + 0.5rem + 2px);
-  // padding: $input-padd-y $input-padd-x;
-  padding: 0.375rem 0.75rem;
+  // height: calc(distance("big") + distance("small-quite") + sizes_px("two"));
+  padding: distance("small-so") distance("quite-normal");
   // max-width: 90%;
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
+  font-size: size("large");
+  font-weight: weight("normal");
+  line-height: $larger;
+  color: $input-col;
+  background-color: $white;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  margin-top: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border: sizes_px("one") solid $border-color1;
+  border-radius: distance("very-small");
+  margin-top: distance("very-small");
+  transition: border-color $flash-time ease-in-out,
+    box-shadow $flash-time ease-in-out;
 
   &::-ms-expand {
     background-color: transparent;
@@ -222,63 +203,71 @@ label {
 
   &:-moz-focusring {
     color: transparent;
-    text-shadow: 0 0 0 #495057;
+    // text-shadow: 0 0 0 $input-col;
+    @include text_shadow(0, 0, 0, $input-col);
   }
 
   &:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #80bdff;
+    color: $input-col;
+    background-color: $white;
+    border-color: $light-blue1;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    @include box_shadow(0, 0, 0, 0.2rem, rgba(0, 123, 255, 0.25));
+    // box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
 
   &::-webkit-input-placeholder {
-    color: #6c757d;
-    opacity: 1;
+    @extend %grey_opac_full;
   }
 
   &::-moz-placeholder {
-    color: #6c757d;
-    opacity: 1;
+    @extend %grey_opac_full;
   }
 
   &:-ms-input-placeholder {
-    color: #6c757d;
-    opacity: 1;
+    @extend %grey_opac_full;
   }
 
   &::-ms-input-placeholder {
-    color: #6c757d;
-    opacity: 1;
+    @extend %grey_opac_full;
   }
 
   &::placeholder {
-    color: #6c757d;
-    opacity: 1;
+    @extend %grey_opac_full;
   }
 
   &:disabled,
   &[readonly] {
     background-color: $gray-200;
-    opacity: 0.9;
+    opacity: $quite_small;
+  }
+
+  // &.form-control-range {
+  //   // width: sizes_px("five") * 50;
+  //   text-align: center;
+  //   @extend %marg_auto;
+  // }
+
+  &#spiciness_scale {
+    margin-top: $track-height * 1.2;
+  }
+
+  &#slices_of_bread {
+    // width: 120px;
+    width: sizes_px("ten") * 12;
   }
 }
+
+// .range {
+//   width: sizes_px("five") * 50;
+//   text-align: center;
+//   @extend %marg_auto;
+// }
 
 .input-cont {
   //   width: fit-content;
   overflow: hidden;
 }
-
-#slices_of_bread {
-  width: 120px;
-}
-
-// .input-block.error {
-//   input {
-//     border: 1px solid $error2;
-//   }
-// }
 
 form {
   overflow: hidden;

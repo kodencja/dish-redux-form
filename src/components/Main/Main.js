@@ -10,10 +10,10 @@ import {
   setImgSrc,
   checkIfAnyChangeMade,
   setWelcomeTxt,
-} from "../redux/dishActions";
-import { appearInput } from "../functions/appearing";
-import { set_Output_Style } from "../functions/setOutputStyle";
-import DishForm, { defaultOption } from "./DishForm";
+} from "../../redux/dishActions";
+import { appearInput } from "../../functions/appearing";
+import { set_Output_Style } from "../../functions/setOutputStyle";
+import DishForm, { defaultOption } from "../Form/DishForm";
 
 export const DishContext = React.createContext();
 
@@ -52,6 +52,14 @@ const Main = (props) => {
   //   console.log(dishFormRdx);
   // },[])
 
+  // listener for window resize
+  useEffect(() => {
+    window.addEventListener("resize", callOutputStyle);
+    return () => {
+      window.removeEventListener("resize", callOutputStyle);
+    }
+  }, [])
+
   useEffect(() => {
     if (dishState.ifTypeWasSetFirstTime && formRdx.values.type !== undefined) {
       setTimeout(() => {
@@ -73,23 +81,9 @@ const Main = (props) => {
       : dishState.typeChanged;
 
   useEffect(() => {
-    // call a function to set a left distance of bubble with the default value - dedicated to "range" type input
-    if (inputDivRef.current !== undefined && inputDivRef.current !== null) {
-      inputDivRef.current.forEach((el) => {
-        const elemInput = el.children[0].children[1];
-        const elType = elemInput.getAttribute("type");
-
-        if (elType === "range") {
-          const elVal = elemInput.getAttribute("value");
-
-          // set dynamically the bubble's 'left' attribute
-          if (elVal !== undefined && elVal !== "") {
-            set_Output_Style(elVal, elemInput, "%", setOutputLeft);
-          }
-        }
-      });
-    }
-  }, [dependForLeftStyle]);
+    // call a function that calls another function to set a left distance of bubble with the default value - dedicated to "range" type input
+    callOutputStyle();
+  }, [dishState.typeChanged, dependForLeftStyle]);
 
   // handle main title appearing and "Hungry?" welcome question
   useEffect(() => {
@@ -104,6 +98,25 @@ const Main = (props) => {
       welcomeRef.current.classList.add("hello");
     }
   }, []);
+
+  const callOutputStyle = () => {
+        // call a function to set a left distance of bubble with the default value - dedicated to "range" type input
+        if (inputDivRef.current !== undefined && inputDivRef.current !== null) {
+          inputDivRef.current.forEach((el) => {
+            const elemInput = el.children[0].children[1];
+            const elType = elemInput.getAttribute("type");
+    
+            if (elType === "range") {
+              const elVal = elemInput.getAttribute("value");
+    
+              // set dynamically the bubble's 'left' attribute
+              if (elVal !== undefined && elVal !== "") {
+                set_Output_Style(elVal, elemInput, "%", setOutputLeft);
+              }
+            }
+          });
+        }
+  };
 
   // input's array refs
   const addToInputDivRef = useCallback(
@@ -159,7 +172,7 @@ const Main = (props) => {
   return (
     <div className="container">
       <h2 className="title hide-upper" ref={titleRef}>
-        Let's have a delicious meal!
+        {dishState.mainTitle}
       </h2>
       <div className="dishes flex justify-center align-center" ref={dishesRef}>
         <DishContext.Provider

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
-import { defaultOption } from "./DishForm";
+import { defaultOption } from "../Form/DishForm";
 import { createInputTag } from "./inputTag";
 
 const Input = createInputTag((input, meta, custom) => {

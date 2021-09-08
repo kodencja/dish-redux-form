@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from "react";
 import PropTypes, { exact } from "prop-types";
-import { DishContext } from "./Main";
+import { DishContext } from "../Main/Main";
 import { Field, reduxForm, SubmissionError, reset } from "redux-form";
-import Input from "./Input";
-import RenderField from "./RenderField";
-import { validate } from "../functions/validation";
-import { sendToServer } from "../functions/onSubmit";
+import Input from "../Input/Input";
+import RenderField from "../Input/RenderField";
+import { validate } from "../../functions/validation";
+import { sendToServer } from "../../functions/onSubmit";
+import { set_Output_Style } from "../../functions/setOutputStyle";
 
 export const defaultOption = "Select an option";
 
@@ -21,6 +22,7 @@ const DishForm = (props) => {
   const {
     dishState,
     formRdx,
+    setOutputLeft,
     setType,
     ifTypeChanged,
     setFinalResp,
@@ -154,6 +156,11 @@ const DishForm = (props) => {
     inputDivRef.current = inputsDivRef_copy;
 
     // if (e.target.value === "soup" && !formRdx.values.spiciness_scale) {
+    //   const elemInput = inputDivRef.current.filter(
+    //     (el) => el.getAttribute("type") === "range"
+    //   );
+    //   console.log(elemInput);
+    //   set_Output_Style("1", elemInput[0], "%", setOutputLeft);
     // initialize({ ...formRdx.values, spiciness_scale: 1 });
     // }
     setTimeout(() => {
@@ -173,8 +180,10 @@ const DishForm = (props) => {
   const checkInteger = (val) => {
     // console.log("val: ", val);
     if (!val || val === "0") {
+      // console.log("val: ", val);
       return val;
     } else {
+      // console.log(Number(val));
       return Number(val);
     }
   };

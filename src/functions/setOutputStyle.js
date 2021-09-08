@@ -1,51 +1,59 @@
-export const set_Output_Style = 
-  (inputVal, elTrg, unit, setOutputLeft) => {
+export const set_Output_Style = (inputVal, elTrg, unit, setOutputLeft) => {
+  const styles = getComputedStyle(elTrg);
+  const padding =
+    parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
 
-    const styles = getComputedStyle(elTrg);
-    const padding =
-      parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+  const elWidth = elTrg.clientWidth;
 
-    const elWidth = elTrg.clientWidth;
+  const parentEl = elTrg.parentElement;
+  const parentWidth = parentEl.clientWidth;
 
-    const bubbleWidth = parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue(
-        "--bubble-width"
-      )
-    );
 
-    const thumbWidth = parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue(
-        "--thumb-width"
-      )
-    );
-    const thumbBorderWidth = parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue(
-        "--thumb-border-width"
-      )
-    );
-    const thumbMargLeft = 1;
+  const widthDiff = parentWidth - elWidth;
 
-    if (elTrg !== undefined && elTrg !== null) {
-      let refObjMin = parseInt(elTrg.getAttribute("min"));
-      let refObjMax = parseInt(elTrg.getAttribute("max"));
+  const bubbleWidth = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--bubble-width"
+    )
+  );
 
-      const ratio =
-        ((parseInt(inputVal) - refObjMin) * 100) / (refObjMax - refObjMin);
+  const thumbWidth = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue("--thumb-width")
+  );
+  const thumbBorderWidth = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--thumb-border-width"
+    )
+  );
+  const thumbMargLeft = 1;
 
-      const leftDistance =
-        ((padding / 2 +
-          thumbMargLeft +
-          (thumbWidth + thumbBorderWidth * 2) / 2 -
-          bubbleWidth / 2) *
-          100) /
-        elWidth;
+  if (elTrg !== undefined && elTrg !== null) {
+    let refObjMin = parseInt(elTrg.getAttribute("min"));
+    let refObjMax = parseInt(elTrg.getAttribute("max"));
 
-      const rightDistance =
-        ((padding + (thumbWidth + thumbBorderWidth * 2)) * 100) / elWidth;
+    const ratio =
+      ((parseInt(inputVal) - refObjMin) * 100) / (refObjMax - refObjMin);
+    // console.log(ratio);
+    const leftDistance =
+      ((padding / 2 +
+        thumbMargLeft +
+        thumbWidth / 2 -
+        bubbleWidth / 2 +
+        widthDiff / 2) *
+        100) /
+      parentWidth;
 
-      const changeableDistance = (rightDistance * ratio) / 100;
+    const rightDistance =
+      ((padding + widthDiff + (thumbWidth + thumbBorderWidth * 2)) * 100) /
+      parentWidth;
 
-      setOutputLeft( ratio + leftDistance - changeableDistance + unit);
-      return false;
-    }
-  };
+    const changeableDistance = (rightDistance * ratio) / 100;
+
+    // console.log("leftDistance: ", leftDistance);
+    // console.log("rightDistance: ", rightDistance);
+    // console.log("changeableDistance: ", changeableDistance);
+
+    setOutputLeft(ratio + leftDistance - changeableDistance + unit);
+    return false;
+  }
+};

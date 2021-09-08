@@ -12,6 +12,7 @@ import {
 } from "./dishTypes";
 
 const initState = {
+  mainTitle: "Let's have a delicious meal!",
   url: "https://jsonplaceholder.typicode.com/posts",
   outputStyle: { left: "0" },
   finalResponse: "",

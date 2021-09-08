@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DishContext } from "./Main";
+import { DishContext } from "../Main/Main";
 import { Field } from "redux-form";
 
 const RenderField = ({ no_of_inputs, add_class, ...rest_props }) => {

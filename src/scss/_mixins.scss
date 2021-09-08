@@ -1,54 +1,3 @@
-// set paddings or margins
-@mixin paddMrg($arg...) {
-  @if nth($arg, 1) == "padding" {
-    @if length($arg) ==5 {
-      padding-top: nth($arg, 2);
-      padding-right: nth($arg, 3);
-      padding-bottom: nth($arg, 4);
-      padding-left: nth($arg, 5);
-    } @else if length($arg) ==3 {
-      @if nth($arg, 2) == "left" {
-        padding-left: nth($arg, 3);
-      } @else if nth($arg, 2) == "right" {
-        padding-right: nth($arg, 3);
-      } @else if nth($arg, 2) == "top" {
-        padding-top: nth($arg, 3);
-      } @else if nth($arg, 2) == "bottom" {
-        padding-bottom: nth($arg, 3);
-      } @else {
-        padding: nth($arg, 2) nth($arg, 3);
-      }
-    } @else if length($arg) ==4 {
-      padding: nth($arg, 2) nth($arg, 3) nth($arg, 4) auto;
-    } @else if length($arg) ==2 {
-      padding: nth($arg, 2);
-    }
-  } @else if nth($arg, 1) == "margin" {
-    @if length($arg) ==5 {
-      margin-top: nth($arg, 2);
-      margin-right: nth($arg, 3);
-      margin-bottom: nth($arg, 4);
-      margin-left: nth($arg, 5);
-    } @else if length($arg) ==3 {
-      @if nth($arg, 2) == "left" {
-        margin-left: nth($arg, 3);
-      } @else if nth($arg, 2) == "right" {
-        margin-right: nth($arg, 3);
-      } @else if nth($arg, 2) == "top" {
-        margin-top: nth($arg, 3);
-      } @else if nth($arg, 2) == "bottom" {
-        margin-bottom: nth($arg, 3);
-      } @else {
-        margin: nth($arg, 2) nth($arg, 3);
-      }
-    } @else if length($arg) ==4 {
-      margin: nth($arg, 2) nth($arg, 3) nth($arg, 4) auto;
-    } @else if length($arg) ==2 {
-      margin: nth($arg, 2);
-    }
-  }
-}
-
 @function weight($weight-name) {
   @return map-get($font-weights, $weight-name);
 }
@@ -87,15 +36,3 @@
   background: $thumb-color;
   cursor: pointer;
 }
-
-// @function color-inverse($color) {
-//   @return invert($color);
-// }
-
-// @function color-compl($color) {
-//   @return complement($color);
-// }
-
-// @function color-mixed($color1, $color2, $weight) {
-//   @return mix($color1, $color2, $weight);
-// }

@@ -1,7 +1,5 @@
 @import "./mixins";
-// :root {
-//   --thumb_width: 16;
-// }
+
 $font-weights: (
   "tiny": 200,
   "normal": 400,
@@ -11,7 +9,7 @@ $font-weights: (
 );
 $font-sizes: (
   "small": 0.7rem,
-  "small-quite": 0.85rem,
+  "small-quite": 0.8rem,
   "quite-normal": 0.9rem,
   "normal": 1rem,
   "bit-larger": 1.1rem,
@@ -25,6 +23,7 @@ $distance-sizes: (
   "zero": 0,
   "tiny": 0.15rem,
   "very-small": 0.25rem,
+  "little": 0.3rem,
   "small": 0.35rem,
   "small-so": 0.375rem,
   "small-quite": 0.5rem,
@@ -49,46 +48,34 @@ $sizes-px: (
   "ten": 10px,
 );
 
+$center: center;
 $white: #fff;
 $input-col: #495057;
+$darkgrey: #a9a9a9;
 $gray-200: #e9ecef;
-$sec1-bgr-col: #7c7a9a;
-$dark-blue: #0f0e72;
-$gray-blue1: #3c6165;
-$gray-blue2: #4b6062;
 $light-blue1: #80bdff;
-$dark-steel-blue: #324962;
-$dark-gray-blue: #515e7b;
-$dark-blue-grey: #374c66;
-$light-yellow: #f1f2cf;
-$main-bgr-color: #ebf18c;
 $bubble-bgr-color: #cf4b34;
-$dark: #2e2e2e;
-$dark-green: #3d5d5d;
 $mid-gray1: #6c757d;
-$mid-gray2: #556874;
-$smoke: #f5f5f5;
 $black: #000000;
 $error1: #c50114;
 $error2: #dc3545;
-$fine: #006400;
-$bright-blue: #206ea1;
 $label-color: #004da5;
 $title-bgr-col: #00a5ce;
 
-// $track-color: #7a3d3d;
 $track-color: #73b428;
-// $track-color: #006400;
-// $track-color: #057d9b;
-// $track-color: #2190da;
 $border-color: #00a100;
-$thumb-color: #fff;
+$thumb-color: $white;
 
 $border-color1: #ced4da;
 
 $full: 100%;
+$half: $full / 2;
+$transf_full: $full;
+$transf_full_quarter: $full * 1.25;
+$full_self: 100;
 $tiny: 0.25;
 $little: 0.5;
+$bit_small: 0.65;
 $small: 0.75;
 $quite_small: 0.9;
 $normal: 1;
@@ -99,53 +86,39 @@ $bigger: 2;
 $very_big: 3;
 $much_bigger: 5;
 
-// $bubble-radius: 4px;
 $bubble-radius: sizes_px("two") * 2;
-// $bubble-width-no: 32;
+
 $bubble-width-no: $bigger * 16;
 $bubble-width: $bubble-width-no * 1px;
-// $tight-letter-spacing: 0.25px;
-// $tiny-letter-spacing: 0.5px;
+
+$letter-spacing: sizes_px("one");
 $tight-letter-spacing: sizes_px("one") / 4;
 $tiny-letter-spacing: sizes_px("one") / 2;
+$large-letter-spacing: sizes_px("one") * 2.5;
+$bit-thick-letter-spacing: sizes_px("one") / 2;
 
-// $dishes-border-width: 5px;
 $dishes-border-width: sizes_px("five");
-
-// $thumb-radius: 5px;
-// $thumb-height: 20px;
 $thumb-radius: sizes_px("five");
 $thumb-height: sizes_px("ten") * 2;
-// $thumb-width: calc(var(--thumb_width) * 1px);
-// $thumb-width-no: 16;
 $thumb-width-no: $bigger * 8;
 $thumb-width: $thumb-width-no + 0px;
-// $thumb-shadow-size: 1px;
-// $thumb-shadow-blur: 1px;
 $thumb-shadow-size: sizes_px("one");
 $thumb-shadow-blur: sizes_px("one");
 $thumb-shadow-color: #111;
 $thumb-border-width-no: 1;
 $thumb-border-width: $thumb-border-width-no * 1px;
-// $thumb-border-color: white;
-$thumb-border-color: #000000;
+$thumb-border-color: $black;
 
 $track-width: 100%;
-// $track-height: 10px;
-// $track-shadow-size: 2px;
-// $track-shadow-blur: 2px;
 $track-height: sizes_px("ten");
 $track-shadow-size: sizes_px("two");
 $track-shadow-blur: sizes_px("two");
 $track-shadow-color: #222;
-// $track-border-width: 1px;
 $track-border-width: sizes_px("one");
-$track-border-color: black;
+$track-border-color: $black;
 
 $track-radius: sizes_px("two");
 $contrast: 5%;
-// $track-radius: 2px;
-// $contrast: 5%;
 
 $flash-time: 0.15s;
 $rapid-time: 0.25s;

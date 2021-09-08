@@ -154,8 +154,11 @@ label {
 }
 
 .form-control {
-  height: calc(1.5em + 0.5rem + 2px);
-  padding: distance("small-so") distance("little");
+  // height: calc(1.5em + 0.5rem + 2px);
+  height: 2.35rem;
+  // height: calc(distance("larger") + distance("small-quite") + sizes_px("two"));
+  // padding: distance("small-so") distance("little");
+  padding: distance("small-so") distance("quite-normal");
   font-size: size("large");
   font-weight: weight("normal");
   line-height: $larger;

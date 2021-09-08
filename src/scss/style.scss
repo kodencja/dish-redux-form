@@ -265,10 +265,14 @@ button {
 
 @media all and (max-width: 700px) {
   #dishes-form {
-    width: $full * 0.8;
+    width: $full * 0.8 !important;
   }
   .image {
     width: $full * 0.8;
+  }
+
+  .narrow-70 {
+    width: auto;
   }
 }
 
@@ -277,17 +281,15 @@ button {
     width: $full;
   }
 
-  .narrow-70 {
-    width: $full;
-  }
   .image {
     width: $full * 0.9;
   }
 
   #dishes-form {
-    width: $full * 0.9;
-    margin-left: distance("normal");
-    margin-right: distance("normal");
+    width: $full * 0.9 !important;
+  }
+  .form-control {
+    font-size: size("normal");
   }
 }
 
@@ -296,10 +298,13 @@ button {
     letter-spacing: $letter-spacing;
     font-size: size("bit-larger");
   }
+  .form-control {
+    font-size: size("quite-normal");
+  }
 }
 
 @media all and (max-width: 372px) {
   .form-control {
-    max-width: $full * 0.9;
+    font-size: size("small-quite");
   }
 }

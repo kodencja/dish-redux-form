@@ -210,8 +210,8 @@ label {
 }
 
 .form-control {
-  height: calc(1.5em + 0.5rem + 2px);
-  padding: 0.375rem 0.3rem;
+  height: 2.35rem;
+  padding: 0.375rem 0.75rem;
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.5;
@@ -979,10 +979,13 @@ button:disabled {
 
 @media all and (max-width: 700px) {
   #dishes-form {
-    width: 80%;
+    width: 80% !important;
   }
   .image {
     width: 80%;
+  }
+  .narrow-70 {
+    width: auto;
   }
 }
 
@@ -990,16 +993,14 @@ button:disabled {
   .narrow {
     width: 100%;
   }
-  .narrow-70 {
-    width: 100%;
-  }
   .image {
     width: 90%;
   }
   #dishes-form {
-    width: 90%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    width: 90% !important;
+  }
+  .form-control {
+    font-size: 1rem;
   }
 }
 
@@ -1008,10 +1009,13 @@ button:disabled {
     letter-spacing: 1px;
     font-size: 1.1rem;
   }
+  .form-control {
+    font-size: 0.9rem;
+  }
 }
 
 @media all and (max-width: 372px) {
   .form-control {
-    max-width: 90%;
+    font-size: 0.8rem;
   }
 }

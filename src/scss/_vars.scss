@@ -1,7 +1,7 @@
+@import "./mixins";
 // :root {
 //   --thumb_width: 16;
 // }
-
 $font-weights: (
   "tiny": 200,
   "normal": 400,
@@ -15,7 +15,7 @@ $font-sizes: (
   "quite-normal": 0.9rem,
   "normal": 1rem,
   "bit-larger": 1.1rem,
-  "large": 1.25rem,
+  "large": 1.2rem,
   "larger": 1.4rem,
   "big": 1.6rem,
   "bigger": 1.8rem,
@@ -26,6 +26,7 @@ $distance-sizes: (
   "tiny": 0.15rem,
   "very-small": 0.25rem,
   "small": 0.35rem,
+  "small-so": 0.375rem,
   "small-quite": 0.5rem,
   "quite-normal": 0.75rem,
   "normal": 1rem,
@@ -39,11 +40,23 @@ $distance-sizes: (
   "huge": 5rem,
 );
 
+$sizes-px: (
+  "one": 1px,
+  "two": 2px,
+  "three": 3px,
+  "five": 5px,
+  "seven": 7px,
+  "ten": 10px,
+);
+
+$white: #fff;
+$input-col: #495057;
 $gray-200: #e9ecef;
 $sec1-bgr-col: #7c7a9a;
 $dark-blue: #0f0e72;
 $gray-blue1: #3c6165;
 $gray-blue2: #4b6062;
+$light-blue1: #80bdff;
 $dark-steel-blue: #324962;
 $dark-gray-blue: #515e7b;
 $dark-blue-grey: #374c66;
@@ -52,7 +65,7 @@ $main-bgr-color: #ebf18c;
 $bubble-bgr-color: #cf4b34;
 $dark: #2e2e2e;
 $dark-green: #3d5d5d;
-$mid-gray1: #5d6c7c;
+$mid-gray1: #6c757d;
 $mid-gray2: #556874;
 $smoke: #f5f5f5;
 $black: #000000;
@@ -73,21 +86,44 @@ $thumb-color: #fff;
 
 $border-color1: #ced4da;
 
-$bubble-radius: 4px;
-$bubble-width-no: 32;
+$full: 100%;
+$tiny: 0.25;
+$little: 0.5;
+$small: 0.75;
+$quite_small: 0.9;
+$normal: 1;
+$large: 1.25;
+$larger: 1.5;
+$big: 1.8;
+$bigger: 2;
+$very_big: 3;
+$much_bigger: 5;
+
+// $bubble-radius: 4px;
+$bubble-radius: sizes_px("two") * 2;
+// $bubble-width-no: 32;
+$bubble-width-no: $bigger * 16;
 $bubble-width: $bubble-width-no * 1px;
-$tight-letter-spacing: 0.25px;
-$tiny-letter-spacing: 0.5px;
+// $tight-letter-spacing: 0.25px;
+// $tiny-letter-spacing: 0.5px;
+$tight-letter-spacing: sizes_px("one") / 4;
+$tiny-letter-spacing: sizes_px("one") / 2;
 
-$dishes-border-width: 5px;
+// $dishes-border-width: 5px;
+$dishes-border-width: sizes_px("five");
 
-$thumb-radius: 5px;
-$thumb-height: 20px;
+// $thumb-radius: 5px;
+// $thumb-height: 20px;
+$thumb-radius: sizes_px("five");
+$thumb-height: sizes_px("ten") * 2;
 // $thumb-width: calc(var(--thumb_width) * 1px);
-$thumb-width-no: 16;
+// $thumb-width-no: 16;
+$thumb-width-no: $bigger * 8;
 $thumb-width: $thumb-width-no + 0px;
-$thumb-shadow-size: 1px;
-$thumb-shadow-blur: 1px;
+// $thumb-shadow-size: 1px;
+// $thumb-shadow-blur: 1px;
+$thumb-shadow-size: sizes_px("one");
+$thumb-shadow-blur: sizes_px("one");
 $thumb-shadow-color: #111;
 $thumb-border-width-no: 1;
 $thumb-border-width: $thumb-border-width-no * 1px;
@@ -95,15 +131,21 @@ $thumb-border-width: $thumb-border-width-no * 1px;
 $thumb-border-color: #000000;
 
 $track-width: 100%;
-$track-height: 10px;
-$track-shadow-size: 2px;
-$track-shadow-blur: 2px;
+// $track-height: 10px;
+// $track-shadow-size: 2px;
+// $track-shadow-blur: 2px;
+$track-height: sizes_px("ten");
+$track-shadow-size: sizes_px("two");
+$track-shadow-blur: sizes_px("two");
 $track-shadow-color: #222;
-$track-border-width: 1px;
+// $track-border-width: 1px;
+$track-border-width: sizes_px("one");
 $track-border-color: black;
 
-$track-radius: 2px;
+$track-radius: sizes_px("two");
 $contrast: 5%;
+// $track-radius: 2px;
+// $contrast: 5%;
 
 $flash-time: 0.15s;
 $rapid-time: 0.25s;

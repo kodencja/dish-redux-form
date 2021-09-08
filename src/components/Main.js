@@ -52,58 +52,71 @@ const Main = (props) => {
   //   console.log(dishFormRdx);
   // },[])
 
-  useEffect(() => {
-    if (dishState.ifTypeWasSetFirstTime && formRdx.values.type !== undefined) {
-      setTimeout(() => {
-        setImgSrc(formRdx.values.type);
-      }, 500);
-    }
-  }, [dishState.typeChanged]);
-
-  // handle input appearing animation
-  useEffect(() => {
-    if (inputDivRef.current !== undefined && btnRef.current !== undefined) {
-      appearInput(inputDivRef.current, btnRef.current);
-    }
-  }, [dishState.typeChanged]);
-
-  const dependForLeftStyle =
-    dishState.ifTypeWasSetFirstTime && formRdx.values.type === "soup"
-      ? formRdx.values.spiciness_scale
-      : dishState.typeChanged;
-
-  useEffect(() => {
-    // call a function to set a left distance of bubble with the default value - dedicated to "range" type input
-    if (inputDivRef.current !== undefined && inputDivRef.current !== null) {
-      inputDivRef.current.forEach((el) => {
-        const elemInput = el.children[0].children[1];
-        const elType = elemInput.getAttribute("type");
-
-        if (elType === "range") {
-          const elVal = elemInput.getAttribute("value");
-
-          // set dynamically the bubble's 'left' attribute
-          if (elVal !== undefined && elVal !== "") {
-            set_Output_Style(elVal, elemInput, "%", setOutputLeft);
+    // listener for window resize
+    useEffect(() => {
+      window.addEventListener("resize", callOutputStyle);
+      return () => {
+        window.removeEventListener("resize", callOutputStyle);
+      }
+    }, [])
+  
+    useEffect(() => {
+      if (dishState.ifTypeWasSetFirstTime && formRdx.values.type !== undefined) {
+        setTimeout(() => {
+          setImgSrc(formRdx.values.type);
+        }, 500);
+      }
+    }, [dishState.typeChanged]);
+  
+    // handle input appearing animation
+    useEffect(() => {
+      if (inputDivRef.current !== undefined && btnRef.current !== undefined) {
+        appearInput(inputDivRef.current, btnRef.current);
+      }
+    }, [dishState.typeChanged]);
+  
+    const dependForLeftStyle =
+      dishState.ifTypeWasSetFirstTime && formRdx.values.type === "soup"
+        ? formRdx.values.spiciness_scale
+        : dishState.typeChanged;
+  
+    useEffect(() => {
+      // call a function that calls another function to set a left distance of bubble with the default value - dedicated to "range" type input
+      callOutputStyle();
+    }, [dishState.typeChanged, dependForLeftStyle]);
+  
+    // handle main title appearing and "Hungry?" welcome question
+    useEffect(() => {
+      if (titleRef.current !== undefined && titleRef.current !== null) {
+        setTimeout(() => {
+          titleRef.current.classList.add("drop-fast");
+          titleRef.current.classList.remove("hide-upper");
+        }, 1500);
+      }
+  
+      if (welcomeRef.current !== undefined && welcomeRef.current !== null) {
+        welcomeRef.current.classList.add("hello");
+      }
+    }, []);
+  
+    const callOutputStyle = () => {
+          // call a function to set a left distance of bubble with the default value - dedicated to "range" type input
+          if (inputDivRef.current !== undefined && inputDivRef.current !== null) {
+            inputDivRef.current.forEach((el) => {
+              const elemInput = el.children[0].children[1];
+              const elType = elemInput.getAttribute("type");
+      
+              if (elType === "range") {
+                const elVal = elemInput.getAttribute("value");
+      
+                // set dynamically the bubble's 'left' attribute
+                if (elVal !== undefined && elVal !== "") {
+                  set_Output_Style(elVal, elemInput, "%", setOutputLeft);
+                }
+              }
+            });
           }
-        }
-      });
-    }
-  }, [dependForLeftStyle]);
-
-  // handle main title appearing and "Hungry?" welcome question
-  useEffect(() => {
-    if (titleRef.current !== undefined && titleRef.current !== null) {
-      setTimeout(() => {
-        titleRef.current.classList.add("drop-fast");
-        titleRef.current.classList.remove("hide-upper");
-      }, 1500);
-    }
-
-    if (welcomeRef.current !== undefined && welcomeRef.current !== null) {
-      welcomeRef.current.classList.add("hello");
-    }
-  }, []);
+    };
 
   // input's array refs
   const addToInputDivRef = useCallback(

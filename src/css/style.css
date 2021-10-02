@@ -1,3 +1,21 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 0;
+  padding: 0 0;
+}
+
+.fine, .bad, .wait {
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+}
+
+body, .container .dishes {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 input[type="range"]::-webkit-slider-runnable-track, input[type="range"]::-moz-range-track, input[type="range"]::-ms-track {
   width: 100%;
   height: 10px;
@@ -24,6 +42,27 @@ input[type="range"]::-webkit-slider-runnable-track, input[type="range"]::-moz-ra
   opacity: 1;
 }
 
+.container .dishes .image, .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.container .dishes .image {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.input-cont, form, .container .dishes .image, .buttons {
+  overflow: hidden;
+}
+
 input[type="range"] {
   -webkit-appearance: none;
   margin: 6.66667px 0;
@@ -37,9 +76,9 @@ input[type="range"]:focus {
 input[type="range"]::-webkit-slider-runnable-track {
   -webkit-box-shadow: 2px 2px 2px #222, 0px 0px 2px #2f2f2f;
           box-shadow: 2px 2px 2px #222, 0px 0px 2px #2f2f2f;
-  background: #73b428;
+  background: #0093b8;
   border-radius: 2px;
-  border: 1px solid black;
+  border: 1px solid #000000;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -59,14 +98,14 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type="range"]:focus::-webkit-slider-runnable-track {
-  background: #80c92d;
+  background: #00a7d2;
 }
 
 input[type="range"]::-moz-range-track {
   box-shadow: 2px 2px 2px #222, 0px 0px 2px #2f2f2f;
-  background: #73b428;
+  background: #0093b8;
   border-radius: 2px;
-  border: 1px solid black;
+  border: 1px solid #000000;
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -87,15 +126,15 @@ input[type="range"]::-ms-track {
 }
 
 input[type="range"]::-ms-fill-lower {
-  background: #669f23;
-  border: 1px solid black;
+  background: #007f9f;
+  border: 1px solid #000000;
   border-radius: 4px;
   box-shadow: 2px 2px 2px #222, 0px 0px 2px #2f2f2f;
 }
 
 input[type="range"]::-ms-fill-upper {
-  background: #73b428;
-  border: 1px solid black;
+  background: #0093b8;
+  border: 1px solid #000000;
   border-radius: 4px;
   box-shadow: 2px 2px 2px #222, 0px 0px 2px #2f2f2f;
 }
@@ -111,11 +150,11 @@ input[type="range"]::-ms-thumb {
 }
 
 input[type="range"]:focus::-ms-fill-lower {
-  background: #73b428;
+  background: #0093b8;
 }
 
 input[type="range"]:focus::-ms-fill-upper {
-  background: #80c92d;
+  background: #00a7d2;
 }
 
 .bubble {
@@ -171,7 +210,7 @@ label {
 }
 
 .form-control {
-  height: calc(1.5em + 0.5rem + 2px);
+  height: 2.35rem;
   padding: 0.375rem 0.75rem;
   font-size: 1.2rem;
   font-weight: 400;
@@ -219,14 +258,6 @@ label {
 
 .form-control#slices_of_bread {
   width: 120px;
-}
-
-.input-cont {
-  overflow: hidden;
-}
-
-form {
-  overflow: hidden;
 }
 
 @-webkit-keyframes showUp {
@@ -675,18 +706,6 @@ form {
           animation: helloShow 1s linear forwards;
 }
 
-.fine, .bad, .wait {
-  font-weight: 600 !important;
-  letter-spacing: 1px !important;
-}
-
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0 0;
-  padding: 0 0;
-}
-
 html {
   height: 100vh;
 }
@@ -701,13 +720,103 @@ body {
   color: ghostwhite;
   height: 100%;
   background-image: url("../img/restaurant_icons.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .container {
   background-color: rgba(255, 255, 240, 0.8);
+}
+
+.container .title {
+  text-align: center;
+  font-variant-caps: small-caps;
+  color: #00a5ce;
+  letter-spacing: 1.3px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  -webkit-transition: all 0.75s ease-out;
+  -o-transition: all 0.75s ease-out;
+  transition: all 0.75s ease-out;
+}
+
+.container .dishes {
+  width: 100%;
+  border-top: 5px solid ivory;
+  border-bottom: 5px solid ivory;
+  background-image: url("../img/veg4.jpg");
+}
+
+.container .dishes #dishes-form {
+  text-align: center;
+  min-width: 55%;
+  width: 55%;
+  margin: 1rem;
+  background-color: rgba(255, 255, 240, 0.5);
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+.container .dishes #dishes-form .reply {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #007c9b;
+  margin-top: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.container .dishes .image {
+  min-width: 40%;
+  width: 40%;
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 240, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.container .dishes .image .answer {
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  -webkit-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: perspective(500px);
+          transform: perspective(500px);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.container .dishes .image .photo {
+  -webkit-transform-origin: 50% 0%;
+      -ms-transform-origin: 50% 0%;
+          transform-origin: 50% 0%;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  border: 7px solid rgba(0, 95, 133, 0.75);
+  border-radius: 8px;
+}
+
+.container .dishes .image .hide-photo {
+  -webkit-transform-origin: 50% 100%;
+      -ms-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+  -webkit-animation-name: anim_out;
+          animation-name: anim_out;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  visibility: hidden;
+}
+
+.container .dishes .image .welcome {
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  font-size: 1.35rem;
+  color: #0065d8;
 }
 
 .hidden {
@@ -716,14 +825,6 @@ body {
 
 .visible {
   visibility: visible;
-}
-
-.flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 
 .justify-center {
@@ -744,28 +845,6 @@ body {
           align-items: flex-start;
 }
 
-.title {
-  text-align: center;
-  font-variant-caps: small-caps;
-  color: #00a5ce;
-  letter-spacing: 1.3px;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  -webkit-transition: all 0.75s ease-out;
-  -o-transition: all 0.75s ease-out;
-  transition: all 0.75s ease-out;
-}
-
-.dishes {
-  width: 100%;
-  border-top: 5px solid ivory;
-  border-bottom: 5px solid ivory;
-  background-image: url("../img/veg4.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 button {
   color: white;
   border: 0;
@@ -778,96 +857,7 @@ button {
 
 button:disabled {
   opacity: 0.65;
-  background-color: darkgray;
-}
-
-.buttons {
-  overflow: hidden;
-}
-
-#dishes-form {
-  text-align: center;
-  min-width: 55%;
-  width: 55%;
-  margin: 1rem;
-  background-color: rgba(255, 255, 240, 0.5);
-  border-radius: 15px;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-}
-
-.image {
-  min-width: 40%;
-  width: 40%;
-  width: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-bottom: 0.75rem;
-  text-align: center;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 240, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.welcome {
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  font-size: 1.35rem;
-  color: #0065d8;
-}
-
-.reply {
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: #007c9b;
-  margin-top: 0.35rem;
-  margin-bottom: 0.5rem;
-}
-
-.answer {
-  text-align: center;
-  border-radius: 10px;
-  padding: 20px;
-  -webkit-transform-origin: 50% 50%;
-      -ms-transform-origin: 50% 50%;
-          transform-origin: 50% 50%;
-  -webkit-transform: perspective(500px);
-          transform: perspective(500px);
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-}
-
-.photo {
-  -webkit-transform-origin: 50% 0%;
-      -ms-transform-origin: 50% 0%;
-          transform-origin: 50% 0%;
-  border-radius: 10px;
-  width: 100%;
-  height: auto;
-  border: 7px solid rgba(0, 95, 133, 0.75);
-  border-radius: 8px;
-}
-
-.hide-photo {
-  -webkit-transform-origin: 50% 100%;
-      -ms-transform-origin: 50% 100%;
-          transform-origin: 50% 100%;
-  -webkit-animation-name: anim_out;
-          animation-name: anim_out;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  visibility: hidden;
+  background-color: #a9a9a9;
 }
 
 .hanging {
@@ -903,7 +893,7 @@ button:disabled {
   margin-left: auto;
   margin-right: auto;
   margin-top: 0.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem 0.5rem;
   padding-right: 0.1rem;
   padding-left: 0.1rem;
   font-weight: 700;
@@ -912,8 +902,7 @@ button:disabled {
 }
 
 .warning {
-  background-color: papayawhip;
-  color: slateblue;
+  color: orange;
 }
 
 .hide-upper {
@@ -979,7 +968,7 @@ button:disabled {
     padding: 0;
   }
   .image {
-    width: 60%;
+    width: 70%;
   }
   #dishes-form {
     width: 70%;
@@ -990,7 +979,13 @@ button:disabled {
 
 @media all and (max-width: 700px) {
   #dishes-form {
+    width: 80% !important;
+  }
+  .image {
     width: 80%;
+  }
+  .narrow-70 {
+    width: auto;
   }
 }
 
@@ -998,16 +993,14 @@ button:disabled {
   .narrow {
     width: 100%;
   }
-  .narrow-70 {
-    width: 100%;
-  }
   .image {
-    width: 80%;
+    width: 90%;
   }
   #dishes-form {
-    width: 90%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    width: 90% !important;
+  }
+  .form-control {
+    font-size: 1rem;
   }
 }
 
@@ -1016,10 +1009,13 @@ button:disabled {
     letter-spacing: 1px;
     font-size: 1.1rem;
   }
+  .form-control {
+    font-size: 0.9rem;
+  }
 }
 
 @media all and (max-width: 372px) {
   .form-control {
-    max-width: 90%;
+    font-size: 0.8rem;
   }
 }

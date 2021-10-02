@@ -1,0 +1,51 @@
+%general_sizing {
+  box-sizing: border-box;
+  margin: 0 0;
+  padding: 0 0;
+}
+
+%fatter-normal {
+  font-weight: weight("fatter") !important;
+  letter-spacing: 1px !important;
+}
+
+%bgr-center-cover {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+%track {
+  width: $track-width;
+  height: $track-height;
+  cursor: pointer;
+}
+
+%marg_auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%inline_absl {
+  position: absolute;
+  display: inline-block;
+}
+
+%grey_opac_full {
+  color: $mid-gray1;
+  opacity: 1;
+}
+
+%flex_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+%flex_center {
+  align-items: center;
+  justify-content: center;
+}
+
+%over_hidden {
+  overflow: hidden;
+}

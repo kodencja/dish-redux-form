@@ -157,7 +157,7 @@ const Main = (props) => {
         dishState.ifTypeWasSetFirstTime &&
         dishState.imgSrc !== "" &&
         formRdx.values.type !== undefined
-          ? require(`../img/${dishState.imgSrc}.jpg`).default
+          ? require(`../../img/${dishState.imgSrc}.jpg`).default
           : ""
       }
     />

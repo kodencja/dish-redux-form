@@ -1,8 +1,21 @@
-import { render, screen } from '@testing-library/react';
-import Main from '../Main';
+import { render, screen } from "@testing-library/react";
+import configureStore from "redux-mock-store";
+import { Provider } from "react-redux";
+import Main from "../Main";
 
-test('renders learn react link', () => {
-  render(<Main />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const middlewares = [];
+const mockStore = configureStore(middlewares);
+
+describe("Main", () => {
+  const store = mockStore({});
+
+  test("should have heading main title", () => {
+    render(
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    );
+    const headingElement = screen.getByText(/Let's have a delicious meal!/i);
+    expect(headingElement).toBeInTheDocument();
+  });
 });

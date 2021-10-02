@@ -1,4 +1,4 @@
-import { defaultOption } from "../components/DishForm";
+import { defaultOption } from "../components/Form/DishForm";
 
 // check time format
 // 3 groups of 2 character separated by : each character must be a digit contained in that specific ranges

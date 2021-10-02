@@ -1,22 +1,15 @@
 @import "./vars";
+@import "./extend";
 @import "./mixins";
 @import "./inputs";
 @import "./anims";
 
-%fatter-normal {
-  font-weight: weight("fatter") !important;
-  letter-spacing: 1px !important;
-}
-
 * {
-  box-sizing: border-box;
-  margin: 0 0;
-  padding: 0 0;
+  @extend %general_sizing;
 }
 
 html {
-  height: 100vh;
-  // background-color: $track-color;
+  height: $full_self * 1vh;
 }
 
 :root {
@@ -26,24 +19,99 @@ html {
 }
 
 body {
-  // background-color: whitesmoke;
   color: ghostwhite;
-  height: 100%;
-  // background-image: url("../img/cerata1.png");
+  height: $full;
   background-image: url("../img/restaurant_icons.png");
-  // background-image: url("../img/flowers.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  @extend %bgr-center-cover;
 }
 
 .container {
-  // margin: 50px;
-  // background-color: $title-bgr-col;
-  // backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 240, 0.8);
-  // background-color: rgba(71, 203, 255, 0.8);
-  // background-color: rgba(37, 172, 226, 0.8);
+
+  .title {
+    text-align: $center;
+    font-variant-caps: small-caps;
+    color: $title-bgr-col;
+    letter-spacing: sizes_px("one") * 1.3;
+    padding-top: sizes_px("ten") * 3;
+    padding-bottom: sizes_px("ten");
+    transition: all $short-time ease-out;
+  }
+
+  .dishes {
+    width: $full;
+    border-top: $dishes-border-width solid ivory;
+    border-bottom: $dishes-border-width solid ivory;
+    background-image: url("../img/veg4.jpg");
+    @extend %bgr-center-cover;
+
+    #dishes-form {
+      text-align: center;
+      min-width: $half * 1.1;
+      width: $half * 1.1;
+      margin: distance("normal");
+      background-color: rgba(255, 255, 240, 0.5);
+      border-radius: sizes_px("five") * 3;
+      backdrop-filter: blur(sizes_px("ten"));
+
+      .reply {
+        font-weight: weight("fatter");
+        font-size: size("large");
+        color: darken($title-bgr-col, 10%);
+        margin-top: distance("small");
+        margin-bottom: distance("small-quite");
+      }
+    }
+
+    .image {
+      min-width: $full * 0.4;
+      width: $full * 0.4;
+      width: auto;
+      padding-left: distance("normal");
+      padding-right: distance("normal");
+      margin-bottom: distance("quite-normal");
+      @extend %flex_wrap;
+      @extend %flex_center;
+      @extend %over_hidden;
+
+      border-radius: sizes_px("ten");
+      background-color: rgba(255, 255, 240, 0.5);
+      backdrop-filter: blur(sizes_px("ten"));
+      -webkit-backdrop-filter: blur(sizes_px("ten"));
+
+      .answer {
+        text-align: $center;
+        border-radius: sizes_px("ten");
+        padding: sizes_px("ten") * 2;
+        transform-origin: $half $half;
+        transform: perspective(sizes_px("ten") * 50);
+        transform-style: preserve-3d;
+      }
+
+      .photo {
+        transform-origin: $half 0%;
+        border-radius: sizes_px("ten");
+        width: $full;
+        height: auto;
+        border: sizes_px("seven") solid rgba(0, 95, 133, 0.75);
+        border-radius: sizes_px("two") * 4;
+      }
+
+      .hide-photo {
+        transform-origin: $half $full;
+        animation-name: anim_out;
+        animation-duration: $fast-time;
+        visibility: hidden;
+      }
+
+      .welcome {
+        font-weight: weight("bold");
+        letter-spacing: $large-letter-spacing;
+        font-size: size("normal") * 1.35;
+        color: lighten($label-color, 10%);
+      }
+    }
+  }
 }
 
 .hidden {
@@ -55,195 +123,46 @@ body {
 }
 
 .flex {
-  display: flex;
-  flex-wrap: wrap;
-  // justify-content: center;
-  // align-items: center;
+  @extend %flex_wrap;
 }
 
 .justify-center {
-  justify-content: center;
+  justify-content: $center;
 }
 
 .align-center {
-  align-items: center;
+  align-items: $center;
 }
 
 .align-start {
   align-items: flex-start;
 }
 
-.title {
-  text-align: center;
-  // color: darkgreen;
-  // color: #00a5ce;
-  // color: white;
-  // color: ivory;
-  font-variant-caps: small-caps;
-  color: $title-bgr-col;
-  letter-spacing: 1.3px;
-  // color: black;
-  // background-color: $title-bgr-col;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  // margin-top: 30px;
-  // margin-bottom: 20px;
-  transition: all $short-time ease-out;
-}
-
-// .break {
-//   flex-basis: 100%;
-//   height: 0;
-// }
-
-.dishes {
-  width: 100%;
-  // transform-origin: 100% 50%;
-  // transform: perspective(500px);
-  // margin-left: auto;
-  // margin-right: auto;
-  border-top: $dishes-border-width solid ivory;
-  border-bottom: $dishes-border-width solid ivory;
-  background-image: url("../img/veg4.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 button {
   color: white;
   border: 0;
   background-color: #009500;
-  // background-color: #00a5ce;
-  padding: 6px;
-  margin: 10px;
-  min-width: 80px;
-  border-radius: 4px;
+  padding: sizes_px("three") * 2;
+  margin: sizes_px("ten");
+  min-width: sizes_px("ten") * 8;
+  border-radius: sizes_px("two") * 2;
 
   &:disabled {
-    opacity: 0.65;
-    background-color: darkgray;
+    opacity: $bit_small;
+    background-color: $darkgrey;
   }
 }
 
 .buttons {
-  overflow: hidden;
-}
-
-#dishes-form {
-  text-align: center;
-  min-width: 55%;
-  width: 55%;
-  margin: 1rem;
-  // margin: 1rem 1rem 1rem 2rem;
-  // background-image: url("../img/veg4.jpg");
-  // background-position: center;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  background-color: rgba(255, 255, 240, 0.5);
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  // filter: brightness(100%);
-}
-
-.image {
-  min-width: 40%;
-  width: 40%;
-  width: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-bottom: 0.75rem;
-  text-align: center;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 240, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.welcome {
-  font-weight: weight("bold");
-  letter-spacing: 2.5px;
-  font-size: 1.35rem;
-  // color: $bright-blue;
-  color: lighten($label-color, 10%);
-  // color: darken($track-color, 20%);
-  // color: invert(complement($label-color), 80%);
-}
-
-.reply {
-  font-weight: weight("fatter");
-  font-size: size("large");
-  color: darken($title-bgr-col, 10%);
-  // color: $fine;
-  margin-top: distance("small");
-  margin-bottom: distance("small-quite");
-}
-
-.answer {
-  text-align: center;
-  border-radius: 10px;
-  padding: 20px;
-  transform-origin: 50% 50%;
-  transform: perspective(500px);
-  transform-style: preserve-3d;
-  // p {
-  //   font-size: size("larger");
-  //   color: $fine;
-  //   font-weight: weight("fatter");
-  // }
-}
-
-.photo {
-  transform-origin: 50% 0%;
-  border-radius: 10px;
-  width: 100%;
-  height: auto;
-  // border: 7px solid rgba(70, 101, 58, 0.588);
-  // border: 7px solid $dark-green;
-  // border: 7px solid darken($track-color, 10%);
-  // border: 7px solid #9bc87d;
-  // border: 7px solid #699407;
-  // border: 7px solid #cf9915;
-  // border: 7px solid #0acf8a;
-  // border: 7px solid #cf6300;
-  // border: 7px solid #006882;
-  // border: 7px solid rgba(0, 104, 130, 0.753);
-  // border: 7px solid rgb(0, 130, 80);
-  border: 7px solid rgba(0, 95, 133, 0.75);
-  // border: 7px solid #4c6c79;
-  // border: 7px solid rgba(2, 149, 155, 0.753);
-  // border: 7px solid #c2c4c5;
-  // border: 7px solid #71a3af;
-  // border: 7px solid rgba(127, 199, 166, 0.787);
-  // border: 7px solid #0d6b82;
-  // border: 7px solid rgba(16, 135, 165, 0.65);
-  // border: 7px solid #3b656b;
-  // border: 7px solid lightyellow;
-  // border: 7px solid #fefef0;
-  // border: 15px solid transparent;
-  border-radius: 8px;
-  // transform-style: preserve-3d;
-}
-
-.hide-photo {
-  transform-origin: 50% 100%;
-  animation-name: anim_out;
-  animation-duration: $fast-time;
-  // animation-fill-mode: forwards;
-  visibility: hidden;
+  @extend %over_hidden;
 }
 
 .hanging {
-  animation: hanging 1.75s linear forwards;
-  // animation: anim_in 1s linear forwards;
+  animation: hanging $normal-time * 1.75 linear forwards;
 }
 
 .row {
-  width: 100%;
+  width: $full;
 }
 
 .center {
@@ -251,9 +170,8 @@ button {
 }
 
 .fine {
-  // color: blue;
   @extend %fatter-normal;
-  color: lighten($label-color, 10%);
+  color: lighten($label-color, $full / 10);
 }
 
 .bad {
@@ -267,78 +185,52 @@ button {
 }
 
 .invalid-feedback {
-  // display: none;
-  width: 100%;
-  font-size: 0.8rem;
-  color: #dc3545;
-  // color: rgb(244, 27, 53);
-  // width: fit-content;
-  text-align: center;
+  width: $full;
+  font-size: size("small-quite");
+  color: $error2;
+  text-align: $center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0.25rem;
-  margin-bottom: 0.5rem;
-  padding-right: 0.1rem;
-  padding-left: 0.1rem;
-  font-weight: 700;
+  margin-top: distance("very-small");
+  margin-bottom: distance("small-quite") 0.5rem;
+  padding-right: distance("normal") / 10;
+  padding-left: distance("normal") / 10;
+  font-weight: weight("bold");
   display: block;
-  border-radius: 0.25rem;
+  border-radius: distance("very-small");
 }
 
-// .active {
-// background-color: rgb(200, 189, 32);
-//   background-color: peachpuff;
-// }
-
-// span.errors {
-//   display: inline-block;
-//   padding: 3px;
-//   margin-right: 15px;
-//   background-color: papayawhip;
-//   color: orangered;
-// }
-
-// .error {
-//   // background-color: rgba(255, 160, 122, 0.418);
-//   border: 1px solid $error2;
-// }
-
 .warning {
-  background-color: papayawhip;
-  color: slateblue;
+  color: orange;
 }
 
 .hide-upper {
-  transform: translateY(-100%);
+  transform: translateY($transf_full * (-1));
   visibility: hidden;
 }
 
 .hide-up {
-  // transform: translateY(-25%);
-  transform: translateY(-125%);
+  transform: translateY(-$transf_full_quarter);
 }
 
 .hide-down {
-  // transform: translateY(50%);
-  transform: translateY(150%);
+  transform: translateY($half * 3);
 }
 
 .hide-right {
-  // transform: translateX(25%);
-  transform: translateX(125%);
+  transform: translateX($transf_full_quarter);
 }
 
 .hide-left {
-  // transform: translateX(-25%);
-  transform: translateX(-125%);
+  transform: translateX(-$transf_full_quarter);
 }
 
 .narrow {
-  width: 50%;
+  width: $half;
 }
 
 .narrow-70 {
-  width: 70%;
+  width: $full * 0.7;
 }
 
 .no-display {
@@ -349,92 +241,70 @@ button {
   transition: transform $rapid-time ease-out;
 }
 
-// @media all and (max-width: 847px) {
-//   .range {
-//     width: 250px;
-//   }
-// }
-
 @media all and (min-width: 1125px) {
   #dishes-form {
-    width: 50%;
+    width: $half;
   }
 }
 
 @media all and (max-width: 976px) {
   .answer {
-    margin: 0.75rem auto 0.75rem auto;
+    margin: distance("quite-normal") auto distance("quite-normal") auto;
     padding: 0;
   }
 
   .image {
-    // min-width: 40%;
-    width: 60%;
-    // justify-content: center;
+    width: $full * 0.7;
   }
   #dishes-form {
-    width: 70%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    width: $full * 0.7;
+    margin-left: distance("normal");
+    margin-right: distance("normal");
   }
-}
-
-@media all and (max-width: 842px) {
-  // .container {
-  //   margin: 25px;
-  // }
 }
 
 @media all and (max-width: 700px) {
   #dishes-form {
-    width: 80%;
+    width: $full * 0.8 !important;
   }
-}
-
-@media all and (max-width: 736px) {
   .image {
-    // margin-top: 1rem;
-    // margin-left: 0.5rem;
-    // margin-left: 1rem;
-  }
-}
-
-// @media all and (max-width: 570px) {
-@media all and (max-width: 600px) {
-  .narrow {
-    width: 100%;
+    width: $full * 0.8;
   }
 
   .narrow-70 {
-    width: 100%;
+    width: auto;
   }
+}
+
+@media all and (max-width: 600px) {
+  .narrow {
+    width: $full;
+  }
+
   .image {
-    width: 80%;
+    width: $full * 0.9;
   }
 
   #dishes-form {
-    width: 90%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    width: $full * 0.9 !important;
+  }
+  .form-control {
+    font-size: size("normal");
   }
 }
 
 @media all and (max-width: 420px) {
   .title {
-    letter-spacing: 1px;
+    letter-spacing: $letter-spacing;
     font-size: size("bit-larger");
   }
-  // .container {
-  //   margin: 15px;
-  // }
-  // .input-block {
-  //   margin-left: 0;
-  //   margin-right: 0;
-  // }
+  .form-control {
+    font-size: size("quite-normal");
+  }
 }
 
 @media all and (max-width: 372px) {
   .form-control {
-    max-width: 90%;
+    font-size: size("small-quite");
   }
 }

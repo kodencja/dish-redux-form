@@ -1,32 +1,7 @@
-%track {
-  width: $track-width;
-  height: $track-height;
-  cursor: pointer;
-}
-
-%marg_auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-%inline_absl {
-  position: absolute;
-  display: inline-block;
-}
-
-%grey_opac_full {
-  color: $mid-gray1;
-  opacity: 1;
-}
-
 input[type="range"] {
   -webkit-appearance: none;
   margin: $thumb-height/3 0;
-  // margin: $thumb-height/3 15px;
-  // width: $track-width / 1.5;
   max-width: sizes_px("five") * 50;
-  // text-align: center;
-  // @extend %marg_auto;
 
   &:focus {
     outline: none;
@@ -158,7 +133,6 @@ label {
 
 .number-width {
   width: sizes_px("ten") * 20;
-  // width: 200px;
   @extend %marg_auto;
 }
 
@@ -180,10 +154,11 @@ label {
 }
 
 .form-control {
-  height: calc(1.5em + 0.5rem + 2px);
-  // height: calc(distance("big") + distance("small-quite") + sizes_px("two"));
+  // height: calc(1.5em + 0.5rem + 2px);
+  height: 2.35rem;
+  // height: calc(distance("larger") + distance("small-quite") + sizes_px("two"));
+  // padding: distance("small-so") distance("little");
   padding: distance("small-so") distance("quite-normal");
-  // max-width: 90%;
   font-size: size("large");
   font-weight: weight("normal");
   line-height: $larger;
@@ -203,7 +178,6 @@ label {
 
   &:-moz-focusring {
     color: transparent;
-    // text-shadow: 0 0 0 $input-col;
     @include text_shadow(0, 0, 0, $input-col);
   }
 
@@ -213,7 +187,6 @@ label {
     border-color: $light-blue1;
     outline: 0;
     @include box_shadow(0, 0, 0, 0.2rem, rgba(0, 123, 255, 0.25));
-    // box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
 
   &::-webkit-input-placeholder {
@@ -242,33 +215,19 @@ label {
     opacity: $quite_small;
   }
 
-  // &.form-control-range {
-  //   // width: sizes_px("five") * 50;
-  //   text-align: center;
-  //   @extend %marg_auto;
-  // }
-
   &#spiciness_scale {
     margin-top: $track-height * 1.2;
   }
 
   &#slices_of_bread {
-    // width: 120px;
     width: sizes_px("ten") * 12;
   }
 }
 
-// .range {
-//   width: sizes_px("five") * 50;
-//   text-align: center;
-//   @extend %marg_auto;
-// }
-
 .input-cont {
-  //   width: fit-content;
-  overflow: hidden;
+  @extend %over_hidden;
 }
 
 form {
-  overflow: hidden;
+  @extend %over_hidden;
 }
